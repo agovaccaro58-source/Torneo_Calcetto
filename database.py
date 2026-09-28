@@ -145,8 +145,6 @@ def query_calendario():
     risultato = cursor.fetchall()
     cursor.close()
     conn.close()
-<<<<<<< HEAD
-=======
     return risultato
 
 
@@ -208,5 +206,4 @@ def query_partita_piu_gol():
     risultato = cursor.fetchone()
     cursor.close()
     conn.close()
->>>>>>> refs/remotes/origin/development
     return risultato
