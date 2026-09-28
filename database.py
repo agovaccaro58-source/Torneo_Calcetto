@@ -1,3 +1,13 @@
+import mysql.connector
+
+def connetti():
+    return mysql.connector.connect(
+        host="localhost",
+        user="studente",
+        password="studente",
+        database="calcetto"
+    )
+
 def query_classifica():
     conn = connetti()
     cursor = conn.cursor(dictionary=True)
@@ -58,4 +68,84 @@ def query_squadre_con_numero_giocatori():
     risultato = cursor.fetchall()
     cursor.close()
     conn.close()
+<<<<<<< HEAD
+=======
+    return risultato
+
+def query_squadra(id_squadra):
+    """Restituisce i dati anagrafici di una singola squadra."""
+    conn = connetti()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        """
+        SELECT id_squadra, nome, colore_maglia, responsabile
+        FROM squadre
+        WHERE id_squadra = %s
+    """,
+        (id_squadra,),
+    )
+    risultato = cursor.fetchone()  # Una sola riga (o None se non esiste)
+    cursor.close()
+    conn.close()
+    return risultato
+
+def query_giocatori_squadra(id_squadra):
+    """Restituisce la rosa della squadra ordinata per numero di maglia."""
+    conn = connetti()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        """
+        SELECT numero_maglia, nome, cognome, ruolo
+        FROM giocatori
+        WHERE id_squadra = %s
+        ORDER BY numero_maglia ASC
+    """,
+        (id_squadra,),
+    )
+    risultato = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return risultato
+
+
+def query_partite_squadra(id_squadra):
+    """Restituisce le partite disputate o da disputare da una squadra (sia in casa che fuori)."""
+    conn = connetti()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        """
+        SELECT p.giornata, p.data_ora, p.campo,
+               sc.nome AS casa, so.nome AS ospite,
+               p.gol_casa, p.gol_ospite
+        FROM partite p
+        JOIN squadre sc ON sc.id_squadra = p.id_squadra_casa
+        JOIN squadre so ON so.id_squadra = p.id_squadra_ospite
+        WHERE p.id_squadra_casa = %s OR p.id_squadra_ospite = %s
+        ORDER BY p.giornata ASC, p.data_ora ASC
+    """,
+        (id_squadra, id_squadra),
+    )
+    risultato = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return risultato
+
+
+def query_calendario():
+    """Restituisce tutte le partite del torneo ordinate per giornata e ora."""
+    conn = connetti()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT p.giornata, p.data_ora, p.campo,
+               sc.nome AS casa, so.nome AS ospite,
+               p.gol_casa, p.gol_ospite
+        FROM partite p
+        JOIN squadre sc ON sc.id_squadra = p.id_squadra_casa
+        JOIN squadre so ON so.id_squadra = p.id_squadra_ospite
+        ORDER BY p.giornata ASC, p.data_ora ASC
+    """)
+    risultato = cursor.fetchall()
+    cursor.close()
+    conn.close()
+>>>>>>> refs/remotes/origin/development
     return risultato
