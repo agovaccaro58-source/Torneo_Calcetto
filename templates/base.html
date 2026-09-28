@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titolo %}{% endblock %} - Torneo Calcetto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">⚽ Torneo Calcetto</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarNav" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/">Classifica (Home)</a>
+          <a class="nav-link" href="/squadre">Squadre</a>
+          <a class="nav-link" href="/partite">Calendario</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block contenuto %}{% endblock %}
+  </main>
+
+  <footer class="text-center text-muted py-4 mt-5 border-top">
+    Progetto di: Gruppo Torneo Calcetto
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
