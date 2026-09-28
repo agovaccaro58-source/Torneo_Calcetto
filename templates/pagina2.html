@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titolo %}Squadre{% endblock %}
+
+{% block contenuto %}
+<h1 class="mb-4">Squadre del torneo</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for s in squadre %}
+  <div class="col">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title fw-bold">{{ s.nome }}</h5>
+        <p class="card-text mb-1"><strong>Maglia:</strong> {{ s.colore_maglia }}</p>
+        <p class="card-text mb-1"><strong>Responsabile:</strong> {{ s.responsabile }}</p>
+        <p class="card-text"><strong>Giocatori:</strong> {{ s.num_giocatori }}</p>
+      </div>
+      <div class="card-footer bg-transparent border-top-0">
+        <a href="/squadra/{{ s.id_squadra }}" class="btn btn-primary w-100">Vedi squadra</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

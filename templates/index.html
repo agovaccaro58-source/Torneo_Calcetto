@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titolo %}Classifica{% endblock %}
+
+{% block contenuto %}
+<h1 class="mb-4">Torneo di calcetto</h1>
+
+<div class="row">
+  <div class="col-lg-8">
+    <h2 class="h4">Classifica</h2>
+    <table class="table table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th><th class="text-start">Squadra</th>
+          <th>G</th><th>V</th><th>N</th><th>P</th>
+          <th>GF</th><th>GS</th><th>DR</th><th>Punti</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in classifica %}
+        <tr {% if loop.index == 1 %}class="table-success"{% endif %}>
+          <td>{{ loop.index }}</td>
+          <td class="text-start"><a href="/squadra/{{ s.id_squadra }}">{{ s.nome }}</a></td>
+          <td>{{ s.giocate }}</td><td>{{ s.vinte }}</td><td>{{ s.pareggiate }}</td><td>{{ s.perse }}</td>
+          <td>{{ s.gol_fatti }}</td><td>{{ s.gol_subiti }}</td><td>{{ s.differenza }}</td>
+          <td class="fw-bold">{{ s.punti }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header fw-bold">Prossime partite</div>
+      <ul class="list-group list-group-flush">
+        {% for p in prossime %}
+        <li class="list-group-item">
+          <small class="text-muted">{{ p.data_ora }} · {{ p.campo }}</small><br>
+          {{ p.casa }} – {{ p.ospite }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
