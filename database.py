@@ -3,8 +3,8 @@ import mysql.connector
 def connetti():
     return mysql.connector.connect(
         host="localhost",
-        user="studente",
-        password="studente",
+        user="root",
+        password="vicioGay12",
         database="calcetto"
     )
 
@@ -67,9 +67,7 @@ def query_squadre_con_numero_giocatori():
     """)
     risultato = cursor.fetchall()
     cursor.close()
-    conn.close()
-<<<<<<< HEAD
-=======
+    conn.close
     return risultato
 
 def query_squadra(id_squadra):
@@ -147,5 +145,4 @@ def query_calendario():
     risultato = cursor.fetchall()
     cursor.close()
     conn.close()
->>>>>>> refs/remotes/origin/development
     return risultato
