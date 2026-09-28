@@ -26,7 +26,24 @@ def squadre():
 # =============================================
 # STUDENTE B - pagine 3 e 4
 # =============================================
+@app.route("/squadra/<int:id_squadra>")
+def dettaglio_squadra(id_squadra):
+    squadra = database.query_squadra(id_squadra)
+    if not squadra:
+        return "Squadra non trovata", 404
 
+    rosa = database.query_giocatori_squadra(id_squadra)
+    partite = database.query_partite_squadra(id_squadra)
+
+    return render_template(
+        "pagina3.html", squadra=squadra, rosa=rosa, partite=partite
+    )
+
+
+@app.route("/partite")
+def tutte_le_partite():
+    partite = database.query_calendario()
+    return render_template("pagina4.html", partite=partite)
 
 # =============================================
 # STUDENTE C - pagina 5
