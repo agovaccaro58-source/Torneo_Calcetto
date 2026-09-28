@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block titolo %}Marcatori{% endblock %}
+
+{% block contenuto %}
+<h1 class="mb-4">Marcatori e Statistiche</h1>
+
+<!-- Tre card con i numeri del torneo -->
+<div class="row mb-4">
+  <div class="col-md-4 mb-3 mb-md-0">
+    <div class="card text-center bg-light">
+      <div class="card-body">
+        <h5 class="card-title text-muted">Partite Giocate</h5>
+        <p class="display-6 fw-bold mb-0">{{ numeri.giocate }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3 mb-md-0">
+    <div class="card text-center bg-light">
+      <div class="card-body">
+        <h5 class="card-title text-muted">Gol Totali</h5>
+        <p class="display-6 fw-bold mb-0">{{ numeri.gol_totali }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center bg-light">
+      <div class="card-body">
+        <h5 class="card-title text-muted">Media Gol a Partita</h5>
+        <p class="display-6 fw-bold mb-0">{{ numeri.media_gol }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Tabella Classifica marcatori -->
+  <div class="col-lg-8 mb-4">
+    <div class="card">
+      <div class="card-header fw-bold">Classifica marcatori</div>
+      <div class="card-body p-0">
+        <table class="table table-hover text-center mb-0 align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Posizione</th>
+              <th class="text-start">Giocatore</th>
+              <th>Squadra</th>
+              <th>Reti</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in marcatori %}
+            <tr>
+              <td>
+                {% if loop.index == 1 %}
+                  🥇
+                {% elif loop.index == 2 %}
+                  🥈
+                {% elif loop.index == 3 %}
+                  🥉
+                {% else %}
+                  {{ loop.index }}
+                {% endif %}
+              </td>
+              <td class="text-start fw-bold">{{ m.nome }} {{ m.cognome }}</td>
+              <td>{{ m.squadra }}</td>
+              <td class="fw-bold text-primary">{{ m.reti }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Partita con più gol -->
+  <div class="col-lg-4">
+    <div class="card border-warning">
+      <div class="card-header bg-warning text-dark fw-bold">
+        Partita con più gol
+      </div>
+      <div class="card-body text-center">
+        <h5 class="card-title mb-0">
+          {{ partita_top.casa }} {{ partita_top.gol_casa }} – {{ partita_top.gol_ospite }} {{ partita_top.ospite }}
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
