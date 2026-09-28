@@ -49,5 +49,20 @@ def tutte_le_partite():
 # STUDENTE C - pagina 5
 # =============================================
 
+
+@app.route("/marcatori")
+def marcatori():
+    numeri = database.query_numeri_torneo()
+    classifica_marcatori = database.query_classifica_marcatori()
+    partita_top = database.query_partita_piu_gol()
+
+    return render_template(
+        "pagina5.html",
+        numeri=numeri,
+        marcatori=classifica_marcatori,
+        partita_top=partita_top
+    )
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
