@@ -2,44 +2,82 @@
 {% block titolo %}Classifica{% endblock %}
 
 {% block contenuto %}
-<h1 class="mb-4">Torneo di calcetto</h1>
+<!-- Hero Banner con foto di sfondo -->
+<div class="hero-card">
+  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Campo da calcetto">
+  <div class="hero-overlay">
+    <span class="badge bg-info text-dark fw-bold mb-2 px-3 py-2 rounded-pill">Stagione Ufficiale 2026</span>
+    <h1 class="display-5 fw-extrabold mb-1">Campionato di Calcetto</h1>
+    <p class="lead mb-0 text-light opacity-75">Classifica in tempo reale e prossimi sfide sul campo</p>
+  </div>
+</div>
 
-<div class="row">
+<div class="row g-4">
+  <!-- Classifica con effetto sfocatura -->
   <div class="col-lg-8">
-    <h2 class="h4">Classifica</h2>
-    <table class="table table-hover text-center">
-      <thead class="table-dark">
-        <tr>
-          <th>#</th><th class="text-start">Squadra</th>
-          <th>G</th><th>V</th><th>N</th><th>P</th>
-          <th>GF</th><th>GS</th><th>DR</th><th>Punti</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for s in classifica %}
-        <tr {% if loop.index == 1 %}class="table-success"{% endif %}>
-          <td>{{ loop.index }}</td>
-          <td class="text-start"><a href="/squadra/{{ s.id_squadra }}">{{ s.nome }}</a></td>
-          <td>{{ s.giocate }}</td><td>{{ s.vinte }}</td><td>{{ s.pareggiate }}</td><td>{{ s.perse }}</td>
-          <td>{{ s.gol_fatti }}</td><td>{{ s.gol_subiti }}</td><td>{{ s.differenza }}</td>
-          <td class="fw-bold">{{ s.punti }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="glass-card p-3">
+      <div class="d-flex align-items-center gap-2 mb-3 px-2">
+        <i class="bi bi-bar-chart-line-fill text-primary fs-4"></i>
+        <h4 class="fw-bold mb-0">Classifica Generale</h4>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-custom table-hover align-middle text-center">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="text-start">Squadra</th>
+              <th>G</th><th>V</th><th>N</th><th>P</th>
+              <th>GF</th><th>GS</th><th>DR</th>
+              <th>Pt</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in classifica %}
+            <tr class="{% if loop.index == 1 %}table-first-place{% endif %}">
+              <td class="fw-bold">{% if loop.index == 1 %}🥇{% else %}{{ loop.index }}{% endif %}</td>
+              <td class="text-start">
+                <a href="/squadra/{{ s.id_squadra }}" class="fw-bold text-dark text-decoration-none">
+                  {{ s.nome }}
+                </a>
+              </td>
+              <td>{{ s.giocate }}</td><td>{{ s.vinte }}</td><td>{{ s.pareggiate }}</td><td>{{ s.perse }}</td>
+              <td>{{ s.gol_fatti }}</td><td>{{ s.gol_subiti }}</td>
+              <td>
+                <span class="badge {% if s.differenza > 0 %}bg-success-subtle text-success{% else %}bg-secondary-subtle text-secondary{% endif %}">
+                  {{ s.differenza }}
+                </span>
+              </td>
+              <td class="fw-bold fs-5 text-primary">{{ s.punti }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
+  <!-- Card Prossime Partite -->
   <div class="col-lg-4">
-    <div class="card">
-      <div class="card-header fw-bold">Prossime partite</div>
-      <ul class="list-group list-group-flush">
+    <div class="glass-card p-3 h-100">
+      <div class="d-flex align-items-center gap-2 mb-3 px-2">
+        <i class="bi bi-clock-history text-info fs-4"></i>
+        <h4 class="fw-bold mb-0">Prossimi Match</h4>
+      </div>
+      <div class="d-flex flex-column gap-3">
         {% for p in prossime %}
-        <li class="list-group-item">
-          <small class="text-muted">{{ p.data_ora }} · {{ p.campo }}</small><br>
-          {{ p.casa }} – {{ p.ospite }}
-        </li>
+        <div class="p-3 rounded-4 bg-white bg-opacity-60 border border-white shadow-sm">
+          <div class="d-flex justify-content-between text-muted small mb-1">
+            <span><i class="bi bi-calendar2-event me-1"></i>{{ p.data_ora }}</span>
+            <span class="badge bg-dark text-white">{{ p.campo }}</span>
+          </div>
+          <div class="fw-bold text-dark d-flex justify-content-between align-items-center mt-2">
+            <span>{{ p.casa }}</span>
+            <span class="badge bg-primary-subtle text-primary">VS</span>
+            <span>{{ p.ospite }}</span>
+          </div>
+        </div>
         {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
 </div>

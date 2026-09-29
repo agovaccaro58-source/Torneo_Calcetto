@@ -45,6 +45,7 @@ def tutte_le_partite():
     partite = database.query_calendario()
     return render_template("pagina4.html", partite=partite)
 
+
 # =============================================
 # STUDENTE C - pagina 5
 # =============================================
@@ -60,9 +61,9 @@ def marcatori():
         "pagina5.html",
         numeri=numeri,
         marcatori=classifica_marcatori,
-        partita_top=partita_top
+        partita_top=partita_top,
     )
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

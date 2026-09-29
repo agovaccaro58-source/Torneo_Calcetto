@@ -2,17 +2,20 @@
 {% block titolo %}Calendario Partite{% endblock %}
 
 {% block contenuto %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h1 class="mb-0">Calendario del torneo</h1>
+<div class="hero-card mb-4">
+  <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Calendario">
+  <div class="hero-overlay py-4">
+    <h1 class="display-6 fw-bold mb-0"><i class="bi bi-calendar-week me-2"></i>Calendario Ufficiale</h1>
+  </div>
 </div>
 
-<div class="card shadow-sm border-0">
-  <div class="card-body p-0">
-    <table class="table table-striped table-hover align-middle mb-0">
-      <thead class="table-dark">
+<div class="glass-card">
+  <div class="table-responsive">
+    <table class="table table-custom table-hover align-middle mb-0">
+      <thead>
         <tr>
           <th class="text-center">Giornata</th>
-          <th>Data e ora</th>
+          <th>Data e Ora</th>
           <th>Campo</th>
           <th class="text-end" style="width: 25%;">Casa</th>
           <th class="text-center" style="width: 15%;">Risultato</th>
@@ -22,18 +25,18 @@
       <tbody>
         {% for p in partite %}
         <tr>
-          <td class="text-center fw-bold">{{ p.giornata }}</td>
-          <td>{{ p.data_ora.strftime('%d/%m/%Y %H:%M') }}</td>
+          <td class="text-center fw-bold"><span class="badge bg-primary rounded-circle p-2">{{ p.giornata }}</span></td>
+          <td class="fw-semibold">{{ p.data_ora.strftime('%d/%m/%Y %H:%M') if p.data_ora else p.data_ora }}</td>
           <td><span class="badge bg-light text-dark border">{{ p.campo }}</span></td>
-          <td class="text-end fw-semibold">{{ p.casa }}</td>
+          <td class="text-end fw-bold text-dark">{{ p.casa }}</td>
           <td class="text-center">
             {% if p.gol_casa is not none %}
-              <span class="badge text-bg-dark fs-6">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
+              <span class="badge bg-dark fs-6 px-3 py-2 rounded-pill">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
             {% else %}
-              <span class="badge text-bg-secondary">da giocare</span>
+              <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">Da giocare</span>
             {% endif %}
           </td>
-          <td class="fw-semibold">{{ p.ospite }}</td>
+          <td class="fw-bold text-dark">{{ p.ospite }}</td>
         </tr>
         {% endfor %}
       </tbody>

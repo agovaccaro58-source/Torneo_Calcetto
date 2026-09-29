@@ -4,34 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block titolo %}{% endblock %} - Torneo Calcetto</title>
+
+  <!-- Font Google: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/style.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="top-gradient-bar"></div>
+
+  <!-- Navbar Glassmorphic -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-glass py-3">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="/">⚽ Torneo Calcetto</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarNav" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-white fs-4" href="/">
+        <div class="brand-icon"><i class="bi bi-trophy-fill"></i></div>
+        <span>CALCETTO<span class="text-info">LEAGUE</span></span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/">Classifica (Home)</a>
-          <a class="nav-link" href="/squadre">Squadre</a>
-          <a class="nav-link" href="/partite">Calendario</a>
-          <a class="nav-link" href="/marcatori">Marcatori</a>
+        <div class="navbar-nav ms-auto gap-2">
+          <a class="nav-link-custom" href="/"><i class="bi bi-trophy"></i> Classifica</a>
+          <a class="nav-link-custom" href="/squadre"><i class="bi bi-shield-shaded"></i> Squadre</a>
+          <!-- Link corretto per combaciare con app.py -->
+          <a class="nav-link-custom" href="/partite"><i class="bi bi-calendar-event"></i> Calendario</a>
+          <a class="nav-link-custom" href="/marcatori"><i class="bi bi-fire"></i> Marcatori</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <main class="container">
+  <!-- Contenuto Principale -->
+  <main class="container py-4">
     {% block contenuto %}{% endblock %}
   </main>
 
-  <footer class="text-center text-muted py-4 mt-5 border-top">
-    Progetto di: Gruppo Torneo Calcetto
+  <!-- Footer -->
+  <footer class="footer-glass text-center py-4 mt-auto">
+    <div class="container">
+      <p class="mb-0 small">&copy; 2026 Torneo Calcetto League — Piattaforma Ufficiale</p>
+      <p class="mb-0 samll">&copy; creato da gruppo HANDICAPPATI</p>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

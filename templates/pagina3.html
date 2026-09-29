@@ -2,49 +2,59 @@
 {% block titolo %}{{ squadra.nome }}{% endblock %}
 
 {% block contenuto %}
-<!-- Intestazione con Nome, Maglia e Responsabile -->
-<div class="card mb-4 shadow-sm border-0">
-  <div class="card-body">
-    <h1 class="display-6 fw-bold mb-2">{{ squadra.nome }}</h1>
-    <p class="text-muted mb-0 fs-5">
-      <strong>Colore maglia:</strong> {{ squadra.colore_maglia }} |
-      <strong>Responsabile:</strong> {{ squadra.responsabile }}
-    </p>
+<!-- Banner d'intestazione della squadra -->
+<div class="hero-card mb-4">
+  <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Dettaglio Squadra">
+  <div class="hero-overlay">
+    <a href="/squadre" class="btn btn-sm btn-outline-light rounded-pill mb-3">
+      <i class="bi bi-arrow-left"></i> Torna alle squadre
+    </a>
+    <h1 class="display-5 fw-bold mb-2">{{ squadra.nome }}</h1>
+    <div class="d-flex flex-wrap gap-3 align-items-center text-light opacity-90 fs-6">
+      <span><i class="bi bi-palette-fill text-info me-1"></i><strong>Maglia:</strong> {{ squadra.colore_maglia }}</span>
+      <span>•</span>
+      <span><i class="bi bi-person-badge-fill text-warning me-1"></i><strong>Responsabile:</strong> {{ squadra.responsabile }}</span>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <!-- Tabella della Rosa ordinata per numero di maglia con badge per ruolo -->
-  <div class="col-lg-6 mb-4">
-    <div class="card shadow-sm h-100 border-0">
-      <div class="card-header bg-white fw-bold">Rosa Giocatori</div>
-      <div class="card-body p-0">
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-light">
+<div class="row g-4">
+  <!-- Tabella Rosa Giocatori -->
+  <div class="col-lg-6">
+    <div class="glass-card h-100">
+      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center gap-2">
+        <i class="bi bi-people-fill text-primary fs-5"></i>
+        <h5 class="fw-bold mb-0">Rosa Giocatori</h5>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-custom table-hover align-middle mb-0">
+          <thead>
             <tr>
-              <th class="text-center" style="width: 70px;">N°</th>
+              <th class="text-center" style="width: 60px;">N°</th>
               <th>Nome</th>
               <th>Cognome</th>
-              <th>Ruolo</th>
+              <th class="text-center">Ruolo</th>
             </tr>
           </thead>
           <tbody>
             {% for g in rosa %}
             <tr>
-              <td class="text-center fw-bold">{{ g.numero_maglia }}</td>
-              <td>{{ g.nome }}</td>
-              <td>{{ g.cognome }}</td>
-              <td>
+              <td class="text-center fw-bold">
+                <span class="badge bg-dark text-white rounded-circle">{{ g.numero_maglia }}</span>
+              </td>
+              <td class="fw-semibold text-dark">{{ g.nome }}</td>
+              <td class="fw-semibold text-dark">{{ g.cognome }}</td>
+              <td class="text-center">
                 {% if g.ruolo == 'Portiere' %}
-                  <span class="badge text-bg-warning">Portiere</span>
+                  <span class="badge bg-warning text-dark px-2 py-1 rounded-pill"><i class="bi bi-hand-index-thumb-fill me-1"></i>Portiere</span>
                 {% elif g.ruolo == 'Difensore' %}
-                  <span class="badge text-bg-primary">Difensore</span>
+                  <span class="badge bg-primary px-2 py-1 rounded-pill"><i class="bi bi-shield-lock-fill me-1"></i>Difensore</span>
                 {% elif g.ruolo == 'Laterale' %}
-                  <span class="badge text-bg-info">Laterale</span>
+                  <span class="badge bg-info text-dark px-2 py-1 rounded-pill"><i class="bi bi-arrow-left-right me-1"></i>Laterale</span>
                 {% elif g.ruolo == 'Pivot' %}
-                  <span class="badge text-bg-danger">Pivot</span>
+                  <span class="badge bg-danger px-2 py-1 rounded-pill"><i class="bi bi-lightning-charge-fill me-1"></i>Pivot</span>
                 {% else %}
-                  <span class="badge text-bg-secondary">{{ g.ruolo }}</span>
+                  <span class="badge bg-secondary px-2 py-1 rounded-pill">{{ g.ruolo }}</span>
                 {% endif %}
               </td>
             </tr>
@@ -56,16 +66,19 @@
   </div>
 
   <!-- Tabella Partite della Squadra -->
-  <div class="col-lg-6 mb-4">
-    <div class="card shadow-sm h-100 border-0">
-      <div class="card-header bg-white fw-bold">Partite della Squadra</div>
-      <div class="card-body p-0">
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-light">
+  <div class="col-lg-6">
+    <div class="glass-card h-100">
+      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center gap-2">
+        <i class="bi bi-calendar3 text-info fs-5"></i>
+        <h5 class="fw-bold mb-0">Partite della Squadra</h5>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-custom table-hover align-middle mb-0">
+          <thead>
             <tr>
               <th class="text-center">G.</th>
               <th>Data</th>
-              <th>Casa</th>
+              <th class="text-end">Casa</th>
               <th class="text-center">Risultato</th>
               <th>Ospite</th>
             </tr>
@@ -73,17 +86,21 @@
           <tbody>
             {% for p in partite %}
             <tr>
-              <td class="text-center">{{ p.giornata }}</td>
-              <td>{{ p.data_ora.strftime('%d/%m/%Y %H:%M') }}</td>
-              <td class="{% if p.casa == squadra.nome %}fw-bold text-primary{% endif %}">{{ p.casa }}</td>
+              <td class="text-center fw-bold text-muted">{{ p.giornata }}</td>
+              <td class="small text-muted">{{ p.data_ora.strftime('%d/%m %H:%M') if p.data_ora else p.data_ora }}</td>
+              <td class="text-end {% if p.casa == squadra.nome %}fw-bold text-primary{% else %}text-dark{% endif %}">
+                {{ p.casa }}
+              </td>
               <td class="text-center">
                 {% if p.gol_casa is not none %}
-                  <span class="fw-bold">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
+                  <span class="badge bg-dark px-2 py-1 rounded-pill">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
                 {% else %}
-                  <span class="text-muted fst-italic">da giocare</span>
+                  <span class="badge bg-light text-muted border">da giocare</span>
                 {% endif %}
               </td>
-              <td class="{% if p.ospite == squadra.nome %}fw-bold text-primary{% endif %}">{{ p.ospite }}</td>
+              <td class="{% if p.ospite == squadra.nome %}fw-bold text-primary{% else %}text-dark{% endif %}">
+                {{ p.ospite }}
+              </td>
             </tr>
             {% endfor %}
           </tbody>
@@ -92,6 +109,5 @@
     </div>
   </div>
 </div>
-
-<a href="/squadre" class="btn btn-outline-secondary mt-2">&larr; Torna alle squadre</a>
 {% endblock %}
+}
