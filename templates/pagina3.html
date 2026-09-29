@@ -2,18 +2,50 @@
 {% block titolo %}{{ squadra.nome }}{% endblock %}
 
 {% block contenuto %}
-<!-- Banner d'intestazione della squadra -->
-<div class="hero-card mb-4">
-  <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Dettaglio Squadra">
-  <div class="hero-overlay">
-    <a href="/squadre" class="btn btn-sm btn-outline-light rounded-pill mb-3">
-      <i class="bi bi-arrow-left"></i> Torna alle squadre
-    </a>
-    <h1 class="display-5 fw-bold mb-2">{{ squadra.nome }}</h1>
-    <div class="d-flex flex-wrap gap-3 align-items-center text-light opacity-90 fs-6">
-      <span><i class="bi bi-palette-fill text-info me-1"></i><strong>Maglia:</strong> {{ squadra.colore_maglia }}</span>
-      <span>•</span>
-      <span><i class="bi bi-person-badge-fill text-warning me-1"></i><strong>Responsabile:</strong> {{ squadra.responsabile }}</span>
+<!-- Banner d'intestazione personalizzato con il tema della squadra -->
+<div class="card border-0 mb-4 rounded-4 shadow overflow-hidden position-relative" style="min-height: 240px;">
+
+  <!-- Sfondo dinamico: usa l'immagine della squadra sfocata ed espansa per creare il tema cromatico perfetto -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0;">
+    <img src="{{ url_for('static', filename='img/squadra_' ~ squadra.id_squadra ~ '.jpg') }}"
+         alt=""
+         class="w-100 h-100"
+         style="object-fit: cover; filter: blur(14px) brightness(0.95); transform: scale(1.15); pointer-events: none;">
+  </div>
+
+  <!-- Overlay scuro semitrasparente per garantire leggibilità al testo -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.08); z-index: 1;"></div>
+
+  <!-- Contenuto in primo piano -->
+  <div class="card-body p-4 p-md-5 d-flex flex-column justify-content-between position-relative" style="z-index: 2;">
+    <div>
+      <a href="/squadre" class="btn btn-sm btn-outline-light rounded-pill mb-3 px-3 backdrop-blur shadow-sm">
+        <i class="bi bi-arrow-left me-1"></i> Torna alle squadre
+      </a>
+    </div>
+
+    <!-- Blocco Logo nel cerchio + Nome e Info -->
+    <div class="d-flex align-items-center gap-3 gap-md-4 mt-2">
+      <!-- Cerchio con stemma che riempie tutta la forma (zero spazi vuoti) -->
+      <div class="rounded-circle shadow-lg border border-3 border-white overflow-hidden flex-shrink-0 bg-white"
+           style="width: 100px; height: 100px;">
+        <img src="{{ url_for('static', filename='img/squadra_' ~ squadra.id_squadra ~ '.jpg') }}"
+             alt="Logo {{ squadra.nome }}"
+             class="w-100 h-100"
+             style="object-fit: cover; object-position: center;">
+      </div>
+
+      <!-- Testi della squadra -->
+      <div>
+        <h1 class="display-5 fw-bold text-white mb-1" style="text-shadow: 0 2px 8px rgba(0,0,0,0.7);">
+          {{ squadra.nome }}
+        </h1>
+        <div class="d-flex flex-wrap gap-3 align-items-center text-light fs-6" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+          <span><i class="bi bi-palette-fill text-warning me-1"></i><strong>Maglia:</strong> {{ squadra.colore_maglia }}</span>
+          <span>•</span>
+          <span><i class="bi bi-person-badge-fill text-info me-1"></i><strong>Responsabile:</strong> {{ squadra.responsabile }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -110,4 +142,3 @@
   </div>
 </div>
 {% endblock %}
-}

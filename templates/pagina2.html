@@ -12,22 +12,40 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
   {% for s in squadre %}
   <div class="col">
-    <div class="glass-card glass-card-hover h-100 d-flex flex-column">
-      <!-- Foto dinamica squadra -->
-      <div style="height: 140px; overflow: hidden; position: relative;">
-        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 object-fit-cover" alt="Squadra">
-        <span class="position-absolute top-0 end-0 m-3 badge bg-dark bg-opacity-75 backdrop-blur px-3 py-2">
+    <div class="card border-0 rounded-4 shadow-sm h-100 d-flex flex-column bg-white p-4">
+
+      <!-- Contenitore Logo Circolare Centrato -->
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <div class="rounded-circle shadow-sm border border-3 border-light overflow-hidden bg-white d-flex align-items-center justify-content-center"
+             style="width: 120px; height: 120px;">
+          <img src="{{ url_for('static', filename='img/squadra_' ~ s.id_squadra ~ '.jpg') }}"
+               alt="Logo {{ s.nome }}"
+               class="w-100 h-100"
+               style="object-fit: cover; object-position: center;">
+        </div>
+      </div>
+
+      <!-- Dettagli Squadra -->
+      <div class="d-flex flex-column flex-grow-1 text-center">
+        <h4 class="fw-bold text-dark mb-1">{{ s.nome }}</h4>
+        <span class="badge bg-light text-secondary border align-self-center mb-3">
           {{ s.num_giocatori }} Giocatori
         </span>
-      </div>
-      <div class="p-4 d-flex flex-column flex-grow-1">
-        <h4 class="fw-bold text-dark mb-2">{{ s.nome }}</h4>
-        <p class="text-muted small mb-1"><i class="bi bi-palette-fill text-primary me-2"></i><strong>Maglia:</strong> {{ s.colore_maglia }}</p>
-        <p class="text-muted small mb-3"><i class="bi bi-person-badge-fill text-info me-2"></i><strong>Resp:</strong> {{ s.responsabile }}</p>
-        <a href="/squadra/{{ s.id_squadra }}" class="btn btn-primary mt-auto rounded-3 fw-bold w-100">
+
+        <div class="bg-light p-3 rounded-3 text-start mb-3">
+          <p class="text-muted small mb-1">
+            <i class="bi bi-palette-fill text-warning me-2"></i><strong>Maglia:</strong> {{ s.colore_maglia }}
+          </p>
+          <p class="text-muted small mb-0">
+            <i class="bi bi-person-badge-fill text-primary me-2"></i><strong>Resp:</strong> {{ s.responsabile }}
+          </p>
+        </div>
+
+        <a href="/squadra/{{ s.id_squadra }}" class="btn btn-primary rounded-pill fw-bold w-100 mt-auto">
           Vedi Rosa & Incontri
         </a>
       </div>
+
     </div>
   </div>
   {% endfor %}
