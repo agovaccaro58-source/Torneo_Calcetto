@@ -12,7 +12,7 @@ def connetti():
         database="calcetto",   #il database a cui ci connettiamo
 
         host="localhost",
-        user="studente",
+         user="studente",
         password="studente",
         database="calcetto",
     )
