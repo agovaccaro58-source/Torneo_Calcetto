@@ -2,47 +2,80 @@
 {% block titolo %}Squadre{% endblock %}
 
 {% block contenuto %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <h1 class="fw-bold mb-1">Le Squadre</h1>
-    <p class="text-muted">I club protagonisti del torneo</p>
+<!-- Hero Banner Squadre con Foto di Sfondo e Gradiente Scuro ad Alto Contrasto -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="height: 160px;">
+  <!-- Foto a tema squadra / spogliatoio / campo da calcetto -->
+  <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=1200&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Squadre Futsal Arena"
+       style="filter: brightness(0.38) saturate(1.2);">
+
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.95) 0%, rgba(24, 34, 54, 0.6) 60%, transparent 100%);">
+
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+            style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
+        <i class="bi bi-shield-shaded me-1"></i> CLUB UFFICIALI
+      </span>
+    </div>
+
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Le Squadre del Torneo</h1>
+    <p class="small text-white-50 mb-0">I club protagonisti, i colori sociali e le rose complete dei giocatori</p>
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<!-- Griglia Card Squadre Frost Glass -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for s in squadre %}
   <div class="col">
-    <div class="card border-0 rounded-4 shadow-sm h-100 d-flex flex-column bg-white p-4">
+    <div class="fa-card-frost h-100 p-4 d-flex flex-column text-center position-relative">
 
-      <!-- Contenitore Logo Circolare Centrato -->
+      <!-- Contenitore Logo Circolare con anello di stacco -->
       <div class="d-flex justify-content-center align-items-center mb-3">
-        <div class="rounded-circle shadow-sm border border-3 border-light overflow-hidden bg-white d-flex align-items-center justify-content-center"
-             style="width: 120px; height: 120px;">
+        <div class="rounded-circle shadow p-1 bg-white border border-2 border-light-subtle d-flex align-items-center justify-content-center"
+             style="width: 124px; height: 124px;">
           <img src="{{ url_for('static', filename='img/squadra_' ~ s.id_squadra ~ '.jpg') }}"
                alt="Logo {{ s.nome }}"
-               class="w-100 h-100"
-               style="object-fit: cover; object-position: center;">
+               class="rounded-circle w-100 h-100"
+               style="object-fit: cover; object-position: center;"
+               onerror="this.onerror=null; this.src='https://placehold.co/120x120/182236/00E5FF?text={{ s.nome[:2]|upper }}';">
         </div>
       </div>
 
-      <!-- Dettagli Squadra -->
-      <div class="d-flex flex-column flex-grow-1 text-center">
-        <h4 class="fw-bold text-dark mb-1">{{ s.nome }}</h4>
-        <span class="badge bg-light text-secondary border align-self-center mb-3">
-          {{ s.num_giocatori }} Giocatori
-        </span>
+      <!-- Dettagli e Dati Club -->
+      <div class="d-flex flex-column flex-grow-1">
+        <h4 class="fw-bold text-dark mb-1" style="letter-spacing: -0.3px;">{{ s.nome }}</h4>
 
-        <div class="bg-light p-3 rounded-3 text-start mb-3">
-          <p class="text-muted small mb-1">
-            <i class="bi bi-palette-fill text-warning me-2"></i><strong>Maglia:</strong> {{ s.colore_maglia }}
-          </p>
-          <p class="text-muted small mb-0">
-            <i class="bi bi-person-badge-fill text-primary me-2"></i><strong>Resp:</strong> {{ s.responsabile }}
-          </p>
+        <div class="mb-3">
+          <span class="badge rounded-pill px-3 py-1 fw-semibold text-secondary-emphasis" style="background: #e2e8f0; font-size: 0.75rem;">
+            <i class="bi bi-person-fill text-primary me-1"></i> {{ s.num_giocatori }} Giocatori in rosa
+          </span>
         </div>
 
-        <a href="/squadra/{{ s.id_squadra }}" class="btn btn-primary rounded-pill fw-bold w-100 mt-auto">
-          Vedi Rosa & Incontri
+        <!-- Box Caratteristiche (Maglia e Responsabile) -->
+        <div class="p-3 rounded-3 text-start mb-3 border border-light-subtle" style="background: rgba(248, 250, 252, 0.9);">
+          <div class="d-flex align-items-center gap-2 mb-2 pb-1 border-bottom border-light">
+            <i class="bi bi-palette-fill" style="color: #E5A84B;"></i>
+            <span class="small text-muted">Maglia:</span>
+            <span class="small fw-bold text-dark ms-auto">{{ s.colore_maglia }}</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-person-badge-fill text-info"></i>
+            <span class="small text-muted">Resp:</span>
+            <span class="small fw-bold text-dark text-truncate ms-auto" style="max-width: 150px;" title="{{ s.responsabile }}">
+              {{ s.responsabile }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Pulsante Dettagli Team coordinato con la Navbar -->
+        <a href="/squadra/{{ s.id_squadra }}"
+           class="btn rounded-pill fw-bold text-white w-100 py-2 mt-auto shadow-sm"
+           style="background: #182236; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease;"
+           onmouseover="this.style.background='#00BAE8'; this.style.color='#0b1320';"
+           onmouseout="this.style.background='#182236'; this.style.color='#ffffff';">
+          Vedi Rosa &amp; Incontri <i class="bi bi-arrow-right ms-1"></i>
         </a>
       </div>
 

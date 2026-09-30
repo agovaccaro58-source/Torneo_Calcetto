@@ -2,64 +2,94 @@
 {% block titolo %}{{ squadra.nome }}{% endblock %}
 
 {% block contenuto %}
-<!-- Banner d'intestazione personalizzato con il tema della squadra -->
-<div class="card border-0 mb-4 rounded-4 shadow overflow-hidden position-relative" style="min-height: 240px;">
+<!-- Banner d'intestazione Club Trasparente e Luminoso -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="min-height: 220px;">
 
-  <!-- Sfondo dinamico: usa l'immagine della squadra sfocata ed espansa per creare il tema cromatico perfetto -->
+  <!-- Sfondo Dinamico Sfocato dal Logo della Squadra -->
   <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden" style="z-index: 0;">
     <img src="{{ url_for('static', filename='img/squadra_' ~ squadra.id_squadra ~ '.jpg') }}"
          alt=""
          class="w-100 h-100"
-         style="object-fit: cover; filter: blur(14px) brightness(0.95); transform: scale(1.15); pointer-events: none;">
+         style="object-fit: cover; filter: blur(12px) brightness(0.65) saturate(1.2); transform: scale(1.12); pointer-events: none;"
+         onerror="this.style.display='none';">
   </div>
 
-  <!-- Overlay scuro semitrasparente per garantire leggibilità al testo -->
-  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.08); z-index: 1;"></div>
+  <!-- Overlay Scuro Molto Più Leggero e Trasparente -->
+  <div class="position-absolute top-0 start-0 w-100 h-100"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.65) 0%, rgba(24, 34, 54, 0.45) 55%, rgba(0, 0, 0, 0.25) 100%); backdrop-filter: blur(2px); z-index: 1;">
+  </div>
 
-  <!-- Contenuto in primo piano -->
-  <div class="card-body p-4 p-md-5 d-flex flex-column justify-content-between position-relative" style="z-index: 2;">
+  <!-- Contenuto Banner -->
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-between h-100 text-white" style="z-index: 2;">
     <div>
-      <a href="/squadre" class="btn btn-sm btn-outline-light rounded-pill mb-3 px-3 backdrop-blur shadow-sm">
-        <i class="bi bi-arrow-left me-1"></i> Torna alle squadre
+      <a href="/squadre" class="btn btn-sm rounded-pill px-3 py-1 fw-bold text-white shadow-sm"
+         style="background: rgba(24, 34, 54, 0.55); border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(6px);">
+        <i class="bi bi-arrow-left me-1"></i> Tutte le Squadre
       </a>
     </div>
 
-    <!-- Blocco Logo nel cerchio + Nome e Info -->
-    <div class="d-flex align-items-center gap-3 gap-md-4 mt-2">
-      <!-- Cerchio con stemma che riempie tutta la forma (zero spazi vuoti) -->
-      <div class="rounded-circle shadow-lg border border-3 border-white overflow-hidden flex-shrink-0 bg-white"
-           style="width: 100px; height: 100px;">
+    <!-- Blocco Stemma Squadra + Dettagli Principali -->
+    <div class="d-flex align-items-center gap-3 gap-md-4 mt-3">
+      <!-- Stemma circolare con cornice e ombra -->
+      <div class="rounded-circle shadow-lg p-1 bg-white border border-3 border-white overflow-hidden flex-shrink-0 d-flex align-items-center justify-content-center"
+           style="width: 104px; height: 104px;">
         <img src="{{ url_for('static', filename='img/squadra_' ~ squadra.id_squadra ~ '.jpg') }}"
              alt="Logo {{ squadra.nome }}"
-             class="w-100 h-100"
-             style="object-fit: cover; object-position: center;">
+             class="rounded-circle w-100 h-100"
+             style="object-fit: cover; object-position: center;"
+             onerror="this.onerror=null; this.src='https://placehold.co/100x100/182236/00E5FF?text={{ squadra.nome[:2]|upper }}';">
       </div>
 
-      <!-- Testi della squadra -->
+      <!-- Testi Principali del Club -->
       <div>
-        <h1 class="display-5 fw-bold text-white mb-1" style="text-shadow: 0 2px 8px rgba(0,0,0,0.7);">
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+                style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
+            SCHEDA CLUB
+          </span>
+          <span class="badge bg-dark bg-opacity-40 text-white border border-white border-opacity-30 rounded-pill px-2 py-1 small">
+            {{ rosa|length }} Atleti
+          </span>
+        </div>
+
+        <h1 class="display-6 fw-extrabold text-white mb-1" style="letter-spacing: -0.5px; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">
           {{ squadra.nome }}
         </h1>
-        <div class="d-flex flex-wrap gap-3 align-items-center text-light fs-6" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
-          <span><i class="bi bi-palette-fill text-warning me-1"></i><strong>Maglia:</strong> {{ squadra.colore_maglia }}</span>
+
+        <div class="d-flex flex-wrap gap-2 gap-md-3 align-items-center text-white small mt-1" style="text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+          <span class="d-flex align-items-center gap-1">
+            <i class="bi bi-palette-fill" style="color: #E5A84B;"></i>
+            <span class="fw-semibold">Maglia:</span> {{ squadra.colore_maglia }}
+          </span>
           <span>•</span>
-          <span><i class="bi bi-person-badge-fill text-info me-1"></i><strong>Responsabile:</strong> {{ squadra.responsabile }}</span>
+          <span class="d-flex align-items-center gap-1">
+            <i class="bi bi-person-badge-fill text-info"></i>
+            <span class="fw-semibold">Responsabile:</span> {{ squadra.responsabile }}
+          </span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row g-4">
+<!-- Sezione Tabelle Rosa e Partite (Tabella integrata nella card a tutta ampiezza) -->
+<div class="row g-4 align-items-stretch">
+
   <!-- Tabella Rosa Giocatori -->
-  <div class="col-lg-6">
-    <div class="glass-card h-100">
-      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center gap-2">
-        <i class="bi bi-people-fill text-primary fs-5"></i>
-        <h5 class="fw-bold mb-0">Rosa Giocatori</h5>
+  <div class="col-lg-6 d-flex flex-column">
+    <div class="glass-card h-100 d-flex flex-column p-0 overflow-hidden">
+      <!-- Intestazione Card a contatto coi bordi -->
+      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-people-fill text-primary fs-5"></i>
+          <h5 class="fw-bold mb-0 text-dark">Rosa Giocatori</h5>
+        </div>
+        <span class="badge bg-light text-secondary border rounded-pill">{{ rosa|length }} Atleti</span>
       </div>
-      <div class="table-responsive">
-        <table class="table table-custom table-hover align-middle mb-0">
+
+      <!-- Tabella che fa corpo unico con la card senza bordi interni arrotondati -->
+      <div class="table-responsive flex-grow-1 d-flex flex-column m-0">
+        <table class="table table-custom table-hover align-middle mb-0 h-100" style="border: none;">
           <thead>
             <tr>
               <th class="text-center" style="width: 60px;">N°</th>
@@ -72,7 +102,9 @@
             {% for g in rosa %}
             <tr>
               <td class="text-center fw-bold">
-                <span class="badge bg-dark text-white rounded-circle">{{ g.numero_maglia }}</span>
+                <span class="badge bg-dark text-white rounded-circle shadow-sm" style="width: 26px; height: 26px; line-height: 18px; display: inline-flex; align-items: center; justify-content: center;">
+                  {{ g.numero_maglia }}
+                </span>
               </td>
               <td class="fw-semibold text-dark">{{ g.nome }}</td>
               <td class="fw-semibold text-dark">{{ g.cognome }}</td>
@@ -98,20 +130,26 @@
   </div>
 
   <!-- Tabella Partite della Squadra -->
-  <div class="col-lg-6">
-    <div class="glass-card h-100">
-      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center gap-2">
-        <i class="bi bi-calendar3 text-info fs-5"></i>
-        <h5 class="fw-bold mb-0">Partite della Squadra</h5>
+  <div class="col-lg-6 d-flex flex-column">
+    <div class="glass-card h-100 d-flex flex-column p-0 overflow-hidden">
+      <!-- Intestazione Card a contatto coi bordi -->
+      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-calendar3 text-info fs-5"></i>
+          <h5 class="fw-bold mb-0 text-dark">Partite della Squadra</h5>
+        </div>
+        <span class="badge bg-light text-secondary border rounded-pill">{{ partite|length }} Gare</span>
       </div>
-      <div class="table-responsive">
-        <table class="table table-custom table-hover align-middle mb-0">
+
+      <!-- Tabella che fa corpo unico con la card senza bordi interni arrotondati -->
+      <div class="table-responsive flex-grow-1 d-flex flex-column m-0">
+        <table class="table table-custom table-hover align-middle mb-0 h-100" style="border: none;">
           <thead>
             <tr>
-              <th class="text-center">G.</th>
+              <th class="text-center" style="width: 45px;">G.</th>
               <th>Data</th>
               <th class="text-end">Casa</th>
-              <th class="text-center">Risultato</th>
+              <th class="text-center" style="width: 95px;">Risultato</th>
               <th>Ospite</th>
             </tr>
           </thead>
@@ -119,7 +157,7 @@
             {% for p in partite %}
             <tr>
               <td class="text-center fw-bold text-muted">{{ p.giornata }}</td>
-              <td class="small text-muted">{{ p.data_ora.strftime('%d/%m %H:%M') if p.data_ora else p.data_ora }}</td>
+              <td class="small text-muted">{{ p.data_ora.strftime('%d/%m %H:%M') if p.data_ora and p.data_ora.strftime is defined else p.data_ora }}</td>
               <td class="text-end {% if p.casa == squadra.nome %}fw-bold text-primary{% else %}text-dark{% endif %}">
                 {{ p.casa }}
               </td>
@@ -140,5 +178,6 @@
       </div>
     </div>
   </div>
+
 </div>
 {% endblock %}

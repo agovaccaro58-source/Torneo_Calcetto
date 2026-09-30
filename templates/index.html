@@ -2,96 +2,154 @@
 {% block titolo %}Classifica{% endblock %}
 
 {% block contenuto %}
-<!-- Hero Banner con foto di sfondo -->
-<div class="hero-card">
-  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Campo da calcetto">
-  <div class="hero-overlay">
-    <span class="badge bg-info text-dark fw-bold mb-2 px-3 py-2 rounded-pill">Stagione Ufficiale 2026</span>
-    <h1 class="display-5 fw-extrabold mb-1">Campionato di Calcetto</h1>
-    <p class="lead mb-0 text-light opacity-75">Classifica in tempo reale e prossimi sfide sul campo</p>
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="height: 160px;">
+  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Campo da calcetto"
+       style="filter: brightness(0.4) saturate(1.2);">
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.95) 0%, rgba(24, 34, 54, 0.55) 60%, transparent 100%);">
+    <div class="mb-1">
+      <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+            style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
+        STAGIONE UFFICIALE 2026
+      </span>
+    </div>
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Campionato di Calcetto</h1>
+    <p class="small text-white-50 mb-0">Classifica in tempo reale e prossimi incontri sul campo</p>
   </div>
 </div>
 
-<div class="row g-4">
-  <!-- Classifica con effetto sfocatura -->
-  <div class="col-lg-8">
-    <div class="glass-card p-3">
-      <div class="d-flex align-items-center gap-2 mb-3 px-2">
-        <i class="bi bi-bar-chart-line-fill text-primary fs-4"></i>
-        <h4 class="fw-bold mb-0">Classifica Generale</h4>
+<div class="row g-4 align-items-stretch">
+  <!-- Classifica Generale -->
+  <div class="col-lg-8 d-flex flex-column">
+    <div class="fa-card-frost p-4 flex-grow-1 d-flex flex-column">
+
+      <!-- Intestazione Card -->
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="fa-card-title-group">
+          <div class="fa-icon-pill">
+            <i class="bi bi-trophy-fill" style="color: #f59e0b;"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Classifica Generale</h5>
+            <span class="text-muted small">Aggiornamento automatico</span>
+          </div>
+        </div>
+        <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small">
+          {{ classifica|length }} Squadre
+        </span>
       </div>
-      <div class="table-responsive">
-        <table class="table table-custom table-hover align-middle text-center">
+
+      <!-- Tabella Moderna ad Alto Contrasto -->
+      <div class="table-responsive flex-grow-1 rounded-3 border border-secondary-subtle overflow-hidden">
+        <table class="fa-table-modern align-middle text-center mb-0">
           <thead>
             <tr>
-              <th>#</th>
-              <th class="text-start">Squadra</th>
-              <th>G</th><th>V</th><th>N</th><th>P</th>
-              <th>GF</th><th>GS</th><th>DR</th>
-              <th>Pt</th>
+              <th scope="col" style="width: 45px;">#</th>
+              <th scope="col" class="text-start ps-3">Squadra</th>
+              <th scope="col" title="Giocate">G</th>
+              <th scope="col" title="Vinte">V</th>
+              <th scope="col" title="Nulle">N</th>
+              <th scope="col" title="Perse">P</th>
+              <th scope="col" title="Gol Fatti">GF</th>
+              <th scope="col" title="Gol Subiti">GS</th>
+              <th scope="col" title="Differenza Reti">DR</th>
+              <th scope="col" class="pe-3" style="width: 60px; color: #00E5FF;">Pt</th>
             </tr>
           </thead>
           <tbody>
             {% for s in classifica %}
-            <tr class="{% if loop.index == 1 %}table-first-place{% endif %}">
-              <td class="fw-bold">{% if loop.index == 1 %}🥇{% else %}{{ loop.index }}{% endif %}</td>
-              <td class="text-start">
+            <tr class="{% if loop.index == 1 %}leader-highlight{% endif %}">
+              <td class="fw-bold">
+                {% if loop.index == 1 %}
+                  <span class="rank-badge gold">1</span>
+                {% elif loop.index == 2 %}
+                  <span class="rank-badge" style="background: #94a3b8; color: #fff;">2</span>
+                {% elif loop.index == 3 %}
+                  <span class="rank-badge" style="background: #b45309; color: #fff;">3</span>
+                {% else %}
+                  <span class="rank-badge">{{ loop.index }}</span>
+                {% endif %}
+              </td>
+              <td class="text-start ps-3">
                 <a href="/squadra/{{ s.id_squadra }}" class="fw-bold text-dark text-decoration-none">
                   {{ s.nome }}
                 </a>
               </td>
-              <td>{{ s.giocate }}</td><td>{{ s.vinte }}</td><td>{{ s.pareggiate }}</td><td>{{ s.perse }}</td>
-              <td>{{ s.gol_fatti }}</td><td>{{ s.gol_subiti }}</td>
+              <td class="text-secondary">{{ s.giocate }}</td>
+              <td class="fw-bold text-dark">{{ s.vinte }}</td>
+              <td class="text-secondary">{{ s.pareggiate }}</td>
+              <td class="text-secondary">{{ s.perse }}</td>
+              <td class="text-secondary small">{{ s.gol_fatti }}</td>
+              <td class="text-secondary small">{{ s.gol_subiti }}</td>
               <td>
-                <span class="badge {% if s.differenza > 0 %}bg-success-subtle text-success{% else %}bg-secondary-subtle text-secondary{% endif %}">
-                  {{ s.differenza }}
-                </span>
+                {% if s.differenza > 0 %}
+                  <span class="badge bg-success-subtle text-success fw-bold px-2 py-1">+{{ s.differenza }}</span>
+                {% elif s.differenza < 0 %}
+                  <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1">{{ s.differenza }}</span>
+                {% else %}
+                  <span class="badge bg-secondary-subtle text-secondary fw-semibold px-2 py-1">0</span>
+                {% endif %}
               </td>
-              <td class="fw-bold fs-5 text-primary">{{ s.punti }}</td>
+              <td class="fw-extrabold fs-5 pe-3" style="color: #0284c7;">{{ s.punti }}</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
+
     </div>
   </div>
 
-  <!-- Card Prossime Partite -->
-  <div class="col-lg-4">
-    <div class="glass-card p-3 h-100">
-      <div class="d-flex align-items-center gap-2 mb-3 px-2">
-        <i class="bi bi-clock-history text-info fs-4"></i>
-        <h4 class="fw-bold mb-0">Prossimi Match</h4>
+  <!-- Prossimi Match -->
+  <div class="col-lg-4 d-flex flex-column">
+    <div class="fa-card-frost p-4 flex-grow-1 d-flex flex-column">
+
+      <!-- Intestazione Card -->
+      <div class="fa-card-title-group mb-3">
+        <div class="fa-icon-pill">
+          <i class="bi bi-clock-history" style="color: #00E5FF;"></i>
+        </div>
+        <div>
+          <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Prossimi Match</h5>
+          <span class="text-muted small">Programmazione gare</span>
+        </div>
       </div>
-      <div class="d-flex flex-column gap-3">
+
+      <!-- Elenco Partite -->
+      <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-start">
         {% for p in prossime %}
-        <div class="p-3 rounded-4 bg-white bg-opacity-60 border border-white shadow-sm">
-          <div class="d-flex justify-content-between text-muted small mb-1">
-            <span><i class="bi bi-calendar2-event me-1"></i>{{ p.data_ora }}</span>
-            <span class="badge bg-dark text-white">{{ p.campo }}</span>
+        <div class="match-card-box">
+          <div class="d-flex justify-content-between align-items-center text-muted small pb-2 border-bottom border-light">
+            <span class="d-inline-flex align-items-center gap-1">
+              <i class="bi bi-calendar2-event text-primary"></i>
+              <span class="fw-medium text-secondary">{{ p.data_ora }}</span>
+            </span>
+            <span class="badge px-2 py-1 text-white rounded-pill" style="background: #182236; font-size: 0.72rem;">
+              {{ p.campo }}
+            </span>
           </div>
 
-          <!-- Riga squadre allineata e bilanciata -->
-          <div class="row align-items-center text-center g-2 mt-2 fw-bold text-dark">
-            <!-- Squadra Casa: allineata a destra verso il centro -->
-            <div class="col text-end pe-1">
-              <span class="d-inline-block text-break">{{ p.casa }}</span>
+          <!-- Griglia Squadre a 3 Colonne Geometriche: Perfettamente allineata -->
+          <div class="match-grid-layout">
+            <div class="text-end fw-bold text-dark" style="font-size: 0.92rem; line-height: 1.25;">
+              {{ p.casa }}
             </div>
 
-            <!-- Badge VS: bloccato esattamente al centro -->
-            <div class="col-auto px-1">
-              <span class="badge bg-primary-subtle text-primary px-2 py-1 shadow-sm" style="font-size: 0.72rem; letter-spacing: 0.5px;">VS</span>
+            <div class="text-center">
+              <span class="match-tag-vs">VS</span>
             </div>
 
-          <!-- Squadra Ospite: allineata a sinistra verso il centro -->
-          <div class="col text-start ps-1">
-            <span class="d-inline-block text-break">{{ p.ospite }}</span>
+            <div class="text-start fw-bold text-dark" style="font-size: 0.92rem; line-height: 1.25;">
+              {{ p.ospite }}
+            </div>
           </div>
         </div>
-
-      </div>
         {% endfor %}
       </div>
+
     </div>
   </div>
 </div>
