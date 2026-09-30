@@ -5,14 +5,11 @@ import mysql.connector
 def connetti():
     #restituisce l'oggetto di connessione configurato con i parametri del server locale
     return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="vicioGay12",
+        database="calcetto"
 
-        host="localhost", #indirizzo del server del databse locale
-        user="root",    #nome utente del database
-        password="Vivaletette05/",   #password per entrare al database
-        database="calcetto",   #il database a cui ci connettiamo
-
-
-    )
 
 #definisce la funzione per calcolare e recuperare la classifica generale del torneo
 def query_classifica():
