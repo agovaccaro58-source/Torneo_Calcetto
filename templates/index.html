@@ -70,12 +70,26 @@
             <span><i class="bi bi-calendar2-event me-1"></i>{{ p.data_ora }}</span>
             <span class="badge bg-dark text-white">{{ p.campo }}</span>
           </div>
-          <div class="fw-bold text-dark d-flex justify-content-between align-items-center mt-2">
-            <span>{{ p.casa }}</span>
-            <span class="badge bg-primary-subtle text-primary">VS</span>
-            <span>{{ p.ospite }}</span>
+
+          <!-- Riga squadre allineata e bilanciata -->
+          <div class="row align-items-center text-center g-2 mt-2 fw-bold text-dark">
+            <!-- Squadra Casa: allineata a destra verso il centro -->
+            <div class="col text-end pe-1">
+              <span class="d-inline-block text-break">{{ p.casa }}</span>
+            </div>
+
+            <!-- Badge VS: bloccato esattamente al centro -->
+            <div class="col-auto px-1">
+              <span class="badge bg-primary-subtle text-primary px-2 py-1 shadow-sm" style="font-size: 0.72rem; letter-spacing: 0.5px;">VS</span>
+            </div>
+
+          <!-- Squadra Ospite: allineata a sinistra verso il centro -->
+          <div class="col text-start ps-1">
+            <span class="d-inline-block text-break">{{ p.ospite }}</span>
           </div>
         </div>
+
+      </div>
         {% endfor %}
       </div>
     </div>
