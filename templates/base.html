@@ -8,7 +8,7 @@
   <!-- Font Google: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,30 +16,116 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+
 </head>
 <body>
 
-  <div class="top-gradient-bar"></div>
+  <!-- Navbar Stile Screenshot (senza la barra colorata sopra) -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-arena-custom">
+    <div class="container-fluid px-lg-4">
+      <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none m-0 py-0" href="/">
 
-  <!-- Navbar Glassmorphic -->
-  <nav class="navbar navbar-expand-lg sticky-top navbar-glass py-3">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-white fs-4" href="/">
-        <div class="brand-icon"><i class="bi bi-trophy-fill"></i></div>
-        <span>CALCETTO<span class="text-info">LEAGUE</span></span>
+        <!-- LOGO VETTORIALE (Arena Ellittica 3D + Coppa Oro + Pallone Blu/Oro con scia ad ali) -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 95" width="82" height="48" style="overflow: visible;">
+          <defs>
+            <linearGradient id="arenaCyan3D" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0284c7" />
+              <stop offset="50%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#0369a1" />
+            </linearGradient>
+
+            <linearGradient id="arenaGoldMet" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fef08a" />
+              <stop offset="35%" stop-color="#f59e0b" />
+              <stop offset="70%" stop-color="#d97706" />
+              <stop offset="100%" stop-color="#92400e" />
+            </linearGradient>
+
+            <linearGradient id="ballNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2563eb" />
+              <stop offset="60%" stop-color="#0f172a" />
+              <stop offset="100%" stop-color="#020617" />
+            </linearGradient>
+
+            <filter id="arenaGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+            </filter>
+          </defs>
+
+          <g filter="url(#arenaGlow)">
+            <!-- Spalti Arena ellittica superiore (Gradoni in prospettiva blu/ciano) -->
+            <ellipse cx="85" cy="40" rx="64" ry="22" fill="#0b172a" stroke="url(#arenaCyan3D)" stroke-width="4.5"/>
+            <ellipse cx="85" cy="40" rx="55" ry="17" fill="none" stroke="url(#arenaCyan3D)" stroke-width="2.5" opacity="0.8"/>
+            <ellipse cx="85" cy="40" rx="46" ry="13" fill="#040c1a" stroke="url(#arenaCyan3D)" stroke-width="1.8" opacity="0.9"/>
+
+            <!-- Colonne verticali dell'anfiteatro -->
+            <path d="M26 40 v18 M38 48 v18 M52 53 v16 M118 53 v16 M132 48 v18 M144 40 v18"
+                  stroke="url(#arenaCyan3D)" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+
+            <!-- Muro esterno / Base architettonica dorata dell'Arena -->
+            <!-- Lato Sinistro a gradoni dorati -->
+            <path d="M22 42 Q 22 75 85 75" fill="none" stroke="url(#arenaGoldMet)" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M26 48 Q 28 80 85 80" fill="none" stroke="url(#arenaGoldMet)" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M34 56 Q 40 85 85 85" fill="none" stroke="url(#arenaGoldMet)" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Lato Destro a gradoni dorati -->
+            <path d="M148 42 Q 148 75 85 75" fill="none" stroke="url(#arenaGoldMet)" stroke-width="6.5" stroke-linecap="round"/>
+            <path d="M144 48 Q 142 80 85 80" fill="none" stroke="url(#arenaGoldMet)" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M136 56 Q 130 85 85 85" fill="none" stroke="url(#arenaGoldMet)" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Colonne dorate frontali inferiori -->
+            <path d="M106 70 v14 M118 64 v14 M128 58 v14" stroke="url(#arenaGoldMet)" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Scia cinetica ad ali dorate (lato sinistro basso) -->
+            <path d="M18 78 Q 32 86 54 84 Q 30 92 12 80 Q 24 88 42 90" fill="url(#arenaGoldMet)"/>
+            <path d="M24 72 Q 44 80 62 76" stroke="url(#arenaGoldMet)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M16 66 Q 36 74 52 70" stroke="url(#arenaGoldMet)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+            <!-- Coppa della vittoria sopra l'Arena -->
+            <g transform="translate(85, 12)">
+              <path d="M -9 0 L 9 0 L 7 11 C 4 16 0 17 0 17 C 0 17 -4 16 -7 11 Z" fill="url(#arenaGoldMet)"/>
+              <path d="M -9 2 C -13 2 -14 7 -8 9" stroke="url(#arenaGoldMet)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M 9 2 C 13 2 14 7 8 9" stroke="url(#arenaGoldMet)" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M -2.5 17 H 2.5 V 20 H -2.5 Z" fill="url(#arenaGoldMet)"/>
+              <path d="M -6 20 H 6 V 23 H -6 Z" fill="url(#arenaGoldMet)"/>
+              <polygon points="0,3 2,7 6,7 3,10 4,14 0,11 -4,14 -3,10 -6,7 -2,7" fill="#ffffff" opacity="0.75" transform="scale(0.6) translate(0, -2)"/>
+            </g>
+
+            <!-- Pallone Futsal centrale -->
+            <circle cx="85" cy="56" r="19" fill="url(#ballNavy)" stroke="url(#arenaGoldMet)" stroke-width="3.5"/>
+            <circle cx="85" cy="56" r="18" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+
+            <!-- Pattern Geometrico Pallone (Oro) -->
+            <polygon points="85,47 93,53 90,61 80,61 77,53" fill="url(#arenaGoldMet)"/>
+            <line x1="85" y1="47" x2="85" y2="38" stroke="url(#arenaGoldMet)" stroke-width="2"/>
+            <line x1="93" y1="53" x2="101" y2="50" stroke="url(#arenaGoldMet)" stroke-width="2"/>
+            <line x1="90" y1="61" x2="97" y2="69" stroke="url(#arenaGoldMet)" stroke-width="2"/>
+            <line x1="80" y1="61" x2="73" y2="69" stroke="url(#arenaGoldMet)" stroke-width="2"/>
+            <line x1="77" y1="53" x2="69" y2="50" stroke="url(#arenaGoldMet)" stroke-width="2"/>
+
+            <!-- Bagliore riflesso -->
+            <ellipse cx="80" cy="45" rx="3.5" ry="2" fill="#ffffff" opacity="0.8" transform="rotate(-25 80 45)"/>
+          </g>
+        </svg>
+
+        <!-- Testo del Marchio -->
+        <span class="d-inline-flex align-items-center ms-1">
+          <span class="brand-futsal">FUTSAL</span><span class="brand-arena">ARENA</span>
+        </span>
       </a>
 
-      <button class="navbar-toggler border-0 shadow-none text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <!-- Toggler per Mobile -->
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- Voci di Navigazione a destra -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto gap-2">
-          <a class="nav-link-custom" href="/"><i class="bi bi-trophy"></i> Classifica</a>
-          <a class="nav-link-custom" href="/squadre"><i class="bi bi-shield-shaded"></i> Squadre</a>
-          <!-- Link corretto per combaciare con app.py -->
-          <a class="nav-link-custom" href="/partite"><i class="bi bi-calendar-event"></i> Calendario</a>
-          <a class="nav-link-custom" href="/marcatori"><i class="bi bi-fire"></i> Marcatori</a>
+        <div class="navbar-nav ms-auto align-items-center gap-1">
+          <a class="nav-item-match" href="/"><i class="bi bi-trophy"></i> Classifica</a>
+          <a class="nav-item-match" href="/squadre"><i class="bi bi-shield-shaded"></i> Squadre</a>
+          <a class="nav-item-match" href="/partite"><i class="bi bi-calendar-event"></i> Calendario</a>
+          <a class="nav-item-match" href="/marcatori"><i class="bi bi-fire"></i> Marcatori</a>
         </div>
       </div>
     </div>
@@ -54,7 +140,7 @@
   <footer class="footer-glass text-center py-4 mt-auto">
     <div class="container">
       <p class="mb-0 small">&copy; 2026 Torneo Calcetto League — Piattaforma Ufficiale</p>
-      <p class="mb-0 samll">&copy; creato da gruppo HANDICAPPATI</p>
+      <p class="mb-0 small text-secondary">&copy; creato da gruppo HANDICAPPATI</p>
     </div>
   </footer>
 

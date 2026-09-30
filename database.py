@@ -5,10 +5,16 @@ import mysql.connector
 def connetti():
     #restituisce l'oggetto di connessione configurato con i parametri del server locale
     return mysql.connector.connect(
+
         host="localhost", #indirizzo del server del databse locale
         user="root",    #nome utente del database
         password="Vivaletette05/",   #password per entrare al database
-        database="calcetto"     #il database a cui ci connettiamo
+        database="calcetto",   #il database a cui ci connettiamo
+
+        host="localhost",
+        user="studente",
+        password="studente",
+        database="calcetto",
     )
 
 #definisce la funzione per calcolare e recuperare la classifica generale del torneo
@@ -76,7 +82,7 @@ def query_squadre_con_numero_giocatori():
     """)
     risultato = cursor.fetchall() #recupera tutte le righe dei risultati
     cursor.close() #chiude il cursore
-    conn.close #chiude la connessione
+    conn.close() #chiude la connessione
     return risultato #restituisce l'elenco delle squadre
 
 #definisce la funzione per recuperare le informazioni di una specifica squadra tramite ID
