@@ -11,10 +11,7 @@ def connetti():
         password="Vivaletette05/",   #password per entrare al database
         database="calcetto",   #il database a cui ci connettiamo
 
-        host="localhost",
-         user="studente",
-        password="studente",
-        database="calcetto",
+
     )
 
 #definisce la funzione per calcolare e recuperare la classifica generale del torneo
