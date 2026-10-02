@@ -2,45 +2,84 @@
 {% block titolo %}Calendario Partite{% endblock %}
 
 {% block contenuto %}
-<div class="hero-card mb-4">
-  <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1200&q=80" class="hero-bg" alt="Calendario">
-  <div class="hero-overlay py-4">
-    <h1 class="display-6 fw-bold mb-0"><i class="bi bi-calendar-week me-2"></i>Calendario Ufficiale</h1>
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="height: 160px;">
+  <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=1200&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Squadre Futsal Arena"
+       style="filter: brightness(0.38) saturate(1.2);">
+
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.95) 0%, rgba(24, 34, 54, 0.55) 60%, transparent 100%);">
+    <div class="mb-1">
+      <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+            style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
+        STAGIONE UFFICIALE 2026
+      </span>
+    </div>
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Calendario Ufficiale</h1>
+    <p class="small text-white-50 mb-0">Tutti i risultati e i prossimi incontri sul campo</p>
   </div>
 </div>
 
-<div class="glass-card">
-  <div class="table-responsive">
-    <table class="table table-custom table-hover align-middle mb-0">
-      <thead>
-        <tr>
-          <th class="text-center">Giornata</th>
-          <th>Data e Ora</th>
-          <th>Campo</th>
-          <th class="text-end" style="width: 25%;">Casa</th>
-          <th class="text-center" style="width: 15%;">Risultato</th>
-          <th style="width: 25%;">Ospite</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for p in partite %}
-        <tr>
-          <td class="text-center fw-bold"><span class="badge bg-primary rounded-circle p-2">{{ p.giornata }}</span></td>
-          <td class="fw-semibold">{{ p.data_ora.strftime('%d/%m/%Y %H:%M') if p.data_ora else p.data_ora }}</td>
-          <td><span class="badge bg-light text-dark border">{{ p.campo }}</span></td>
-          <td class="text-end fw-bold text-dark">{{ p.casa }}</td>
-          <td class="text-center">
-            {% if p.gol_casa is not none %}
-              <span class="badge bg-dark fs-6 px-3 py-2 rounded-pill">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
-            {% else %}
-              <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">Da giocare</span>
-            {% endif %}
-          </td>
-          <td class="fw-bold text-dark">{{ p.ospite }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<!-- Tabella Calendario Stile Moderno -->
+<div class="table-responsive rounded-3 overflow-hidden">
+  <table class="fa-table-modern align-middle text-center mb-0 w-100">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 50px;">G.ta</th>
+        <th scope="col" class="text-start ps-3">Data e Ora</th>
+        <th scope="col">Campo</th>
+        <th scope="col" class="text-end pe-3" style="width: 30%;">Casa</th>
+        <th scope="col" class="text-center" style="width: 130px;">Risultato</th>
+        <th scope="col" class="text-start ps-3" style="width: 30%;">Ospite</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in partite %}
+      <tr>
+        <!-- Giornata -->
+        <td>
+          <span class="rank-badge" style="background: #182236; color: #fff;">{{ p.giornata }}</span>
+        </td>
+
+        <!-- Data e Ora -->
+        <td class="text-start ps-3 text-secondary small fw-medium text-nowrap">
+          {{ p.data_ora.strftime('%d/%m/%Y %H:%M') if p.data_ora else p.data_ora }}
+        </td>
+
+        <!-- Campo -->
+        <td>
+          <span class="badge bg-light text-dark border font-monospace small" style="font-size: 0.75rem;">
+            {{ p.campo }}
+          </span>
+        </td>
+
+        <!-- Squadra Casa -->
+        <td class="text-end pe-3 fw-bold text-dark" style="font-size: 0.92rem;">
+          {{ p.casa }}
+        </td>
+
+        <!-- Risultato -->
+        <td class="text-center">
+          {% if p.gol_casa is not none %}
+            <span class="badge px-3 py-1 rounded-pill text-white shadow-sm" style="background: #182236; font-size: 0.85rem;">
+              {{ p.gol_casa }} – {{ p.gol_ospite }}
+            </span>
+          {% else %}
+            <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-3 py-1 rounded-pill fw-bold" style="font-size: 0.75rem;">
+              Da giocare
+            </span>
+          {% endif %}
+        </td>
+
+        <!-- Squadra Ospite -->
+        <td class="text-start ps-3 fw-bold text-dark" style="font-size: 0.92rem;">
+          {{ p.ospite }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
