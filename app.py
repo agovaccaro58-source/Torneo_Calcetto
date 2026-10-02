@@ -7,16 +7,6 @@ app = Flask(__name__)
 # STUDENTE A - pagine 1 e 2
 # =============================================
 
-
-@app.route("/")
-def index():
-    classifica = database.query_classifica()
-    prossime = database.query_prossime_partite()
-    return render_template(
-        "index.html", classifica=classifica, prossime=prossime
-    )
-
-
 @app.route("/squadre")
 def squadre():
     squadre = database.query_squadre_con_numero_giocatori()
@@ -26,6 +16,25 @@ def squadre():
 # =============================================
 # STUDENTE B - pagine 3 e 4
 # =============================================
+
+@app.route("/")
+def home():
+    """Presentazione della società Futsal Arena e vetrina dei tornei."""
+    return render_template("home.html")
+
+
+# =============================================
+# 2. TORNEO "SARANNO CAMPIONI 2026/27"
+# (La vostra pagina originale con classifica e prossime gare)
+# =============================================
+@app.route("/torneo")
+def torneo():
+    classifica = database.query_classifica()
+    prossime = database.query_prossime_partite()
+    return render_template(
+        "index.html", classifica=classifica, prossime=prossime
+    )
+
 @app.route("/squadra/<int:id_squadra>")
 def dettaglio_squadra(id_squadra):
     squadra = database.query_squadra(id_squadra)

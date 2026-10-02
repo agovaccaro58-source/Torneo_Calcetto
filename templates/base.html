@@ -120,12 +120,17 @@
       </button>
 
       <!-- Voci di Navigazione a destra -->
+      <!-- Voci di Navigazione a destra con fallback automatico -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto align-items-center gap-1">
-          <a class="nav-item-match" href="/"><i class="bi bi-trophy"></i> Classifica</a>
+        <div class="navbar-nav ms-auto align-items-center gap-1 py-2 py-lg-0">
+          {% block navbar_links %}
+          <!-- Link di Default (Navigazione Torneo) -->
+          <a class="nav-item-match" href="/"><i class="bi bi-house-door"></i> Home</a>
+          <a class="nav-item-match" href="/torneo"><i class="bi bi-trophy"></i> Classifica</a>
           <a class="nav-item-match" href="/squadre"><i class="bi bi-shield-shaded"></i> Squadre</a>
           <a class="nav-item-match" href="/partite"><i class="bi bi-calendar-event"></i> Calendario</a>
           <a class="nav-item-match" href="/marcatori"><i class="bi bi-fire"></i> Marcatori</a>
+          {% endblock %}
         </div>
       </div>
     </div>

@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+{% block titolo %}Futsal Arena - Centro Sportivo, Tornei & Prenotazione Campi{% endblock %}
+
+{# NAVBAR ORDINATA SECONDO IL NUOVO FLUSSO DELLA PAGINA #}
+{% block navbar_links %}
+<a class="nav-item-match" href="#i-campi"><i class="bi bi-grid-3x3-gap-fill"></i> I Campi</a>
+<a class="nav-item-match" href="#tornei"><i class="bi bi-trophy-fill"></i> Tornei</a>
+<a class="nav-item-match" href="#prenota"><i class="bi bi-calendar-check-fill"></i> Prenota Campo</a>
+<a class="nav-item-match" href="#chi-siamo"><i class="bi bi-people-fill"></i> Chi Siamo</a>
+{% endblock %}
+
+{% block contenuto %}
+<!-- 1. HERO SECTION -->
+<div class="position-relative overflow-hidden rounded-5 mb-5 shadow-lg" style="min-height: 440px;">
+  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Struttura Futsal Arena"
+       style="filter: brightness(0.24) contrast(1.15);">
+
+  <!-- Gradiente Scuro con bagliore Ciano -->
+  <div class="position-absolute top-0 start-0 w-100 h-100"
+       style="background: radial-gradient(circle at 85% 25%, rgba(0, 186, 232, 0.32) 0%, transparent 55%),
+                   linear-gradient(90deg, rgba(24, 34, 54, 0.98) 0%, rgba(24, 34, 54, 0.82) 55%, rgba(24, 34, 54, 0.45) 100%);">
+  </div>
+
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white" style="z-index: 2;">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3"
+             style="background: rgba(0, 229, 255, 0.12); border: 1px solid rgba(0, 229, 255, 0.4);">
+          <span class="spinner-grow spinner-grow-sm text-info" role="status" style="width: 8px; height: 8px;"></span>
+          <span class="fw-bold small text-info" style="letter-spacing: 0.8px;">CENTRO SPORTIVO &amp; CIRCUITO GARE</span>
+        </div>
+
+        <h1 class="display-3 fw-black text-white mb-2" style="letter-spacing: -1.5px; line-height: 1.08;">
+          LA TUA PASSIONE, <br>
+          <span style="background: linear-gradient(135deg, #00E5FF 0%, #38BDF8 50%, #E5A84B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            LA NOSTRA ARENA.
+          </span>
+        </h1>
+
+        <p class="lead text-light opacity-75 mb-4" style="max-width: 620px; font-size: 1.12rem;">
+          Campi omologati di ultima generazione per le tue partite tra amici e il palcoscenico del grande calcetto agonistico con campionati ufficiali, arbitri e statistiche live.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#tornei" class="btn rounded-pill px-4 py-3 fw-bold text-dark shadow-lg"
+             style="background: linear-gradient(135deg, #00E5FF, #38BDF8); border: none; font-size: 0.95rem;">
+            <i class="bi bi-trophy-fill me-1"></i> Scopri i Tornei
+          </a>
+          <a href="#prenota" class="btn btn-outline-light rounded-pill px-4 py-3 fw-semibold" style="font-size: 0.95rem;">
+            <i class="bi bi-calendar-plus me-1"></i> Prenota un Campo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. I CAMPI DA GIOCO -->
+<div class="mb-5 pt-2" id="i-campi">
+  <div class="d-flex flex-column align-items-center text-center mb-4">
+    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2 border border-info border-opacity-25"
+         style="background: rgba(0, 229, 255, 0.08);">
+      <i class="bi bi-shield-check text-info"></i>
+      <span class="small fw-bold text-info text-uppercase" style="letter-spacing: 0.8px;">Impianti &amp; Superfici</span>
+    </div>
+    <h2 class="display-6 fw-extrabold text-white mb-2" style="letter-spacing: -0.5px;">Terreni di Gioco</h2>
+    <p class="text-white-50" style="max-width: 620px; font-size: 0.96rem;">
+      Superfici curate per garantire grip ottimale, rimbalzo controllato e sicurezza nei cambi di direzione.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <!-- Campo Indoor -->
+    <div class="col-lg-6">
+      <div class="fa-card-frost overflow-hidden h-100 d-flex flex-column">
+        <div class="position-relative" style="height: 240px;">
+          <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRjvk6xK-ZNoFmHfgKlomEK8bhgUbhldhfDpw-bPzQP3JdZEmEL84tThADFvCdRmTlXd4qYszRJLuLPKl0"
+               class="w-100 h-100 object-fit-cover"
+               alt="Campo Indoor Palasport Futsal Arena">
+          <span class="badge position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill shadow fw-bold"
+                style="background: #182236; color: #00E5FF; border: 1px solid #00E5FF;">
+            <i class="bi bi-snow2 me-1"></i> CAMPO 1 • INDOOR PALASPORT
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column flex-grow-1">
+          <h4 class="fw-bold text-dark mb-2">Arena Coperta Climatizzata</h4>
+          <p class="text-secondary small mb-3">
+            Struttura fissa al coperto con fondo tecnico elastico ad alto grip. Nessun rinvio per maltempo, temperatura ideale in ogni stagione e gradinate laterali dedicate al pubblico.
+          </p>
+          <ul class="list-unstyled small text-dark d-flex flex-column gap-2 mb-0 mt-auto">
+            <li><i class="bi bi-check-circle-fill text-info me-2"></i>Fondo elastico antitrauma specifico per calcio a 5</li>
+            <li><i class="bi bi-check-circle-fill text-info me-2"></i>Spalti con capienza fino a 150 spettatori seduti</li>
+            <li><i class="bi bi-check-circle-fill text-info me-2"></i>Palloni a rimbalzo controllato forniti all'ingresso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Campo Outdoor -->
+    <div class="col-lg-6">
+      <div class="fa-card-frost overflow-hidden h-100 d-flex flex-column">
+        <div class="position-relative" style="height: 240px;">
+          <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSWX09lhodEZJz9PVu_bmNhHXqITRhd0vbEgpjbdTZ-ooQCUcCWb75I5lzU5_Z-PrWG9zWYiXtWSlP7l3M"
+               class="w-100 h-100 object-fit-cover"
+               alt="Campo Outdoor All'Aperto Futsal Arena">
+          <span class="badge position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill shadow fw-bold bg-dark text-warning border border-warning">
+            <i class="bi bi-brightness-high-fill me-1"></i> CAMPO 2 • OUTDOOR
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column flex-grow-1">
+          <h4 class="fw-bold text-dark mb-2">Arena all'Aperto</h4>
+          <p class="text-secondary small mb-3">
+            Manto bicolore da 42 mm intasato con sabbia e granuli antishock. Sistema di drenaggio istantaneo per giocare anche dopo la pioggia e fari LED da 800 Lux senza ombre.
+          </p>
+          <ul class="list-unstyled small text-dark d-flex flex-column gap-2 mb-0 mt-auto">
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Manto testato per ridurre lo stress articolare</li>
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i>8 fari LED ad alta resa per partite serali</li>
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Recinzione perimetrale protettiva imbottita</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. SEZIONE TORNEI (SPOSTATA SUBITO SOTTO I CAMPI) -->
+<div class="mb-5 pt-3" id="tornei">
+  <div class="d-flex flex-column align-items-center text-center mb-4">
+    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2 border border-info border-opacity-25"
+         style="background: rgba(0, 229, 255, 0.08);">
+      <i class="bi bi-award-fill text-info"></i>
+      <span class="small fw-bold text-info text-uppercase" style="letter-spacing: 0.8px;">Palinsesto Gare</span>
+    </div>
+    <h2 class="display-6 fw-extrabold text-white mb-2" style="letter-spacing: -0.5px;">I Tornei dell'Arena</h2>
+    <p class="text-white-50" style="max-width: 620px; font-size: 0.96rem;">
+      Il tabellone ufficiale delle competizioni: entra nel campionato in corso o richiedi informazioni per la prossima sessione invernale.
+    </p>
+  </div>
+
+  <div class="row g-4 align-items-stretch">
+    <!-- TORNEO CORRENTE (8 COLONNE) -->
+    <div class="col-lg-8">
+      <div class="fa-card-frost p-4 p-md-5 h-100 d-flex flex-column position-relative shadow-lg"
+           style="border: 2px solid #00E5FF !important;">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="d-inline-flex align-items-center gap-2">
+            <span class="badge rounded-pill px-3 py-2 fw-bold text-dark shadow-sm"
+                  style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.80rem;">
+              <i class="bi bi-broadcast text-danger me-1"></i> TORNEO IN CORSO
+            </span>
+          </div>
+          <span class="badge bg-dark text-warning fw-bold px-3 py-2 border border-warning border-opacity-25">
+            Autunno 2026/27
+          </span>
+        </div>
+
+        <h3 class="fw-black text-dark mb-2" style="font-size: 2.1rem; letter-spacing: -0.8px;">
+          SARANNO CAMPIONI 2026/27
+        </h3>
+        <p class="text-secondary small mb-4">
+          La massima competizione di Futsal Arena. Un torneo a girone unico con scontri diretti andata e ritorno, direzione arbitrale ufficiale, rose giocatori verificate e aggiornamento in tempo reale di tabellini, differenze reti e marcatori.
+        </p>
+
+        <!-- Dati Chiave Torneo Corrente -->
+        <div class="p-3 rounded-4 mb-4" style="background: rgba(241, 245, 249, 0.95); border: 1px solid #cbd5e1;">
+          <div class="row g-3 text-center">
+            <div class="col-3 border-end">
+              <span class="text-muted d-block" style="font-size: 0.70rem;">DISCIPLINA</span>
+              <strong class="text-dark small">Calcio a 5</strong>
+            </div>
+            <div class="col-3 border-end">
+              <span class="text-muted d-block" style="font-size: 0.70rem;">FORMULA</span>
+              <strong class="text-dark small">All'Italiana</strong>
+            </div>
+            <div class="col-3 border-end">
+              <span class="text-muted d-block" style="font-size: 0.70rem;">ARBITRAGGIO</span>
+              <strong class="text-dark small">Ufficiale FIGC</strong>
+            </div>
+            <div class="col-3">
+              <span class="text-muted d-block" style="font-size: 0.70rem;">IN PALIO</span>
+              <strong class="text-warning small"><i class="bi bi-trophy-fill"></i> Trofeo Arena + 500€ </strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- TASTO DIRETTO AL TORNEO -->
+        <a href="/torneo" class="btn rounded-pill fw-bold text-white w-100 py-3 mt-auto shadow"
+           style="background: #182236; border: 1px solid rgba(0, 229, 255, 0.5); font-size: 1.08rem; transition: all 0.2s ease;"
+           onmouseover="this.style.background='#00BAE8'; this.style.color='#0b1320';"
+           onmouseout="this.style.background='#182236'; this.style.color='#ffffff';">
+          <i class="bi bi-door-open-fill me-2"></i> Entra nel Torneo: Classifica, Gare &amp; Marcatori <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- TORNEO FUTURO CON LINK DIRETTO WHATSAPP (4 COLONNE) -->
+    <div class="col-lg-4">
+      <div class="fa-card-frost p-4 h-100 d-flex flex-column position-relative opacity-95">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+                style="background: linear-gradient(135deg, #fef08a, #f59e0b); font-size: 0.72rem;">
+            <i class="bi bi-snow me-1"></i> PROSSIMAMENTE
+          </span>
+          <span class="badge bg-dark text-warning fw-bold px-3 py-2 border border-warning border-opacity-25">
+            Inverno 2026/27
+          </span>
+        </div>
+
+        <h4 class="fw-bold text-dark mb-1">WINTER ARENA LEAGUE</h4>
+        <p class="text-secondary small mb-3">
+          Torneo indoor a formula rapida con fase a gironi sprint e tabellone a eliminazione diretta serale.
+        </p>
+
+        <div class="p-3 rounded-3 mb-3 border border-light-subtle" style="background: rgba(248, 250, 252, 0.85);">
+          <div class="small text-muted mb-1">Apertura Iscrizioni:</div>
+          <strong class="text-dark small d-block mb-1"><i class="bi bi-calendar-event text-primary me-1"></i>Novembre 2026</strong>
+          <span class="badge bg-secondary-subtle text-secondary" style="font-size: 0.70rem;">Posti limitati (Max 6 Squadre)</span>
+        </div>
+
+        <ul class="list-unstyled small text-muted d-flex flex-column gap-2 mb-4 mt-auto">
+          <li><i class="bi bi-check2-circle text-primary me-2"></i>Gare al coperto su erbetta sintetica</li>
+          <li><i class="bi bi-check2-circle text-primary me-2"></i>Premi individuali (Miglior Portiere, Bomber)</li>
+        </ul>
+
+        <!-- PULSANTE WHATSAPP PER INFO TORNEO INVERNALE -->
+        <a href="https://wa.me/393330000001?text=Ciao%20Futsal%20Arena!%20Vorrei%20informazioni%20e%20dettagli%20sull'iscrizione%20per%20il%20torneo%20invernale%20Winter%20Arena%20League."
+           target="_blank"
+           class="btn btn-success rounded-pill fw-bold w-100 py-2 mt-auto shadow-sm">
+          <i class="bi bi-whatsapp me-2"></i> Richiedi Info su WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. PRENOTA IL TUO CAMPO (CON INTESTAZIONE DI SEZIONE COERENTE) -->
+<div class="mb-5 pt-3" id="prenota">
+  <div class="d-flex flex-column align-items-center text-center mb-4">
+    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2 border border-warning border-opacity-25"
+         style="background: rgba(229, 168, 75, 0.1);">
+      <i class="bi bi-calendar2-check-fill text-warning"></i>
+      <span class="small fw-bold text-warning text-uppercase" style="letter-spacing: 0.8px;">Slot &amp; Match Privati</span>
+    </div>
+    <h2 class="display-6 fw-extrabold text-white mb-2" style="letter-spacing: -0.5px;">Prenota il Tuo Campo</h2>
+    <p class="text-white-50" style="max-width: 620px; font-size: 0.96rem;">
+      Scegli l'impianto e l'orario ideale per una sfida tra amici: verifichiamo la disponibilità e ti confermiamo lo slot in tempo reale.
+    </p>
+  </div>
+
+  <div class="fa-card-frost p-4 p-md-5">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <h3 class="fw-bold text-dark mb-2">Divertiti con Chi Vuoi</h3>
+        <p class="text-secondary small mb-4">
+          I campi di Futsal Arena sono a disposizione sia per match singoli che per bloccare una fascia fissa settimanale per il tuo gruppo.
+        </p>
+
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center gap-2 text-dark small fw-medium">
+            <i class="bi bi-check2-circle text-success fs-5"></i> Spogliatoi caldi numerati e docce inclusi nella tariffa
+          </div>
+          <div class="d-flex align-items-center gap-2 text-dark small fw-medium">
+            <i class="bi bi-check2-circle text-success fs-5"></i> Set casacche pulite e pallone ufficiale forniti
+          </div>
+          <div class="d-flex align-items-center gap-2 text-dark small fw-medium">
+            <i class="bi bi-check2-circle text-success fs-5"></i> Risposta immediata via WhatsApp dalla segreteria
+          </div>
+        </div>
+      </div>
+
+      <!-- Modulo Interattivo WhatsApp -->
+      <div class="col-lg-6">
+        <div class="p-4 rounded-4 bg-white border border-light-subtle shadow-sm">
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Richiesta Disponibilità Campo</h5>
+          <form onsubmit="inviaPrenotazioneWhatsApp(event)">
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Nome e Cognome</label>
+              <input type="text" id="prenotaNome" class="form-control rounded-3" placeholder="Es. Marco Rossi" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-muted">Campo Scelto</label>
+                <select id="prenotaCampo" class="form-select rounded-3">
+                  <option value="Campo 1 Indoor (Palasport)">Campo 1 (Indoor Palasport)</option>
+                  <option value="Campo 2 Outdoor (Sintetico)">Campo 2 (Outdoor Sintetico)</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-muted">Fascia Oraria</label>
+                <select id="prenotaOrario" class="form-select rounded-3">
+                  <option value="18:30 - 19:30">18:30 - 19:30</option>
+                  <option value="19:30 - 20:30">19:30 - 20:30</option>
+                  <option value="20:30 - 21:30">20:30 - 21:30</option>
+                  <option value="21:30 - 22:30">21:30 - 22:30</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success rounded-pill fw-bold w-100 py-2 shadow-sm">
+              <i class="bi bi-whatsapp me-2"></i> Invia Richiesta su WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. CHI SIAMO (IN FONDO PRIMA DEL FOOTER) -->
+<div class="mb-5 pt-3" id="chi-siamo">
+  <div class="d-flex flex-column align-items-center text-center mb-4">
+    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2 border border-info border-opacity-25"
+         style="background: rgba(0, 229, 255, 0.08);">
+      <i class="bi bi-person-lines-fill text-info"></i>
+      <span class="small fw-bold text-info text-uppercase" style="letter-spacing: 0.8px;">Staff &amp; Desk Direttivo</span>
+    </div>
+    <h2 class="display-6 fw-extrabold text-white mb-2" style="letter-spacing: -0.5px;">Chi Siamo</h2>
+    <p class="text-white-50" style="max-width: 650px; font-size: 0.96rem;">
+      Il gruppo organizzativo dietro ogni giornata di campionato, pronto a rispondere per iscrizioni, calendari o noleggio strutture.
+    </p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Staff 1 -->
+    <div class="col">
+      <div class="fa-card-frost p-4 h-100 d-flex flex-column text-center align-items-center">
+        <div class="rounded-circle shadow-sm p-1 bg-white mb-3" style="width: 100px; height: 100px;">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+               class="rounded-circle w-100 h-100 object-fit-cover" alt="Responsabile Tornei">
+        </div>
+        <h5 class="fw-bold text-dark mb-1">Vincenzo Parla</h5>
+        <span class="badge bg-primary-subtle text-primary fw-bold mb-2">Resp. Gare &amp; Designazioni</span>
+        <p class="text-muted small mb-3">
+          Supervisiona la stesura del calendario, le comunicazioni e l'omologazione dei risultati di gara.
+        </p>
+        <div class="d-flex gap-2 mt-auto">
+          <a href="https://wa.me/393330000001?text=Ciao,%20vorrei%20informazioni%20sui%20tornei%20Futsal%20Arena"
+             target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
+            <i class="bi bi-whatsapp me-1"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
+            <i class="bi bi-instagram me-1"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Staff 2 -->
+    <div class="col">
+      <div class="fa-card-frost p-4 h-100 d-flex flex-column text-center align-items-center">
+        <div class="rounded-circle shadow-sm p-1 bg-white mb-3" style="width: 100px; height: 100px;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+               class="rounded-circle w-100 h-100 object-fit-cover" alt="Gestione Centro Sportivo">
+        </div>
+        <h5 class="fw-bold text-dark mb-1">Gestione Impianto</h5>
+        <span class="badge bg-warning-subtle text-dark fw-bold mb-2">Prenotazioni &amp; Campi</span>
+        <p class="text-muted small mb-3">
+          Referente operativo per l'affitto dei campi 1 e 2, la gestione spogliatoi e le richieste speciali di società esterne.
+        </p>
+        <div class="d-flex gap-2 mt-auto">
+          <a href="https://wa.me/393330000002?text=Ciao,%20vorrei%20prenotare%20un%20campo%20da%20calcetto"
+             target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
+            <i class="bi bi-whatsapp me-1"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
+            <i class="bi bi-instagram me-1"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Staff 3 -->
+    <div class="col">
+      <div class="fa-card-frost p-4 h-100 d-flex flex-column text-center align-items-center">
+        <div class="rounded-circle shadow-sm p-1 bg-white mb-3" style="width: 100px; height: 100px;">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+               class="rounded-circle w-100 h-100 object-fit-cover" alt="Media & Statistiche">
+        </div>
+        <h5 class="fw-bold text-dark mb-1">Media &amp; Database</h5>
+        <span class="badge bg-info-subtle text-info-emphasis fw-bold mb-2">Live Score &amp; Digital</span>
+        <p class="text-muted small mb-3">
+          Cura l'aggiornamento costante dei tabellini marcatori, la classifica dinamica e la copertura social dell'evento.
+        </p>
+        <div class="d-flex gap-2 mt-auto">
+          <a href="https://wa.me/393330000003?text=Ciao,%20ho%20una%20domanda%20sulle%20statistiche%20della%20mia%20squadra"
+             target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
+            <i class="bi bi-whatsapp me-1"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
+            <i class="bi bi-instagram me-1"></i> Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script per comporre automaticamente il messaggio WhatsApp della prenotazione -->
+<script>
+function inviaPrenotazioneWhatsApp(e) {
+  e.preventDefault();
+  const nome = document.getElementById('prenotaNome').value;
+  const campo = document.getElementById('prenotaCampo').value;
+  const orario = document.getElementById('prenotaOrario').value;
+
+  const messaggio = `Ciao Futsal Arena! Sono ${nome}. Vorrei richiedere la disponibilità per il ${campo} nella fascia oraria ${orario}. Attendo conferma, grazie!`;
+  const url = `https://wa.me/393330000002?text=${encodeURIComponent(messaggio)}`;
+
+  window.open(url, '_blank');
+}
+</script>
+{% endblock %}

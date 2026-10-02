@@ -6,8 +6,8 @@ def connetti():
     #restituisce l'oggetto di connessione configurato con i parametri del server locale
     return mysql.connector.connect(
         host="localhost",
-        user="root",
-        password="vicioGay12",
+        user="studente",
+        password="studente",
         database="calcetto",
     )
 
