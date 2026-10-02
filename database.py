@@ -2,7 +2,7 @@
 def query_numeri_torneo():
     conn = connetti()
     cursor = conn.cursor(dictionary=True)
-=======
+
 #Importa il driver di mysql per permettere a python di comunicare con il database
 import mysql.connector
 
