@@ -2,63 +2,52 @@
 {% block titolo %}Marcatori{% endblock %}
 
 {% block contenuto %}
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <div>
-    <h1 class="fw-bold mb-1"><i class="bi bi-fire text-danger me-2"></i>Marcatori e Stats</h1>
-    <p class="text-muted mb-0">I numeri principali del campionato</p>
-  </div>
-</div>
+<!-- Hero Banner Marcatori ridotto (Foto di Sfondo e Gradiente Scuro) -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="height: 160px;">
+  <!-- Foto a tema calcio / stadio -->
+  <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Marcatori Futsal Arena"
+       style="filter: brightness(0.38) saturate(1.2);">
 
-<!-- Tre Stat Card Sfocate -->
-<div class="row g-3 mb-4">
-  <div class="col-md-4">
-    <div class="glass-card p-4 text-center">
-      <i class="bi bi-dribbble text-primary fs-1 mb-2"></i>
-      <h6 class="text-muted fw-bold">PARTITE GIOCATE</h6>
-      <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.giocate }}</p>
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.95) 0%, rgba(24, 34, 54, 0.6) 60%, transparent 100%);">
+
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="badge rounded-pill px-3 py-1 fw-bold text-white shadow-sm"
+            style="background: linear-gradient(135deg, #dc3545, #ff4d5d); font-size: 0.72rem; letter-spacing: 0.5px;">
+        <i class="bi bi-fire me-1"></i> CLASSIFICA MARCATORI
+      </span>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="glass-card p-4 text-center">
-      <i class="bi bi-lightning-charge-fill text-warning fs-1 mb-2"></i>
-      <h6 class="text-muted fw-bold">GOL TOTALI</h6>
-      <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.gol_totali }}</p>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="glass-card p-4 text-center">
-      <i class="bi bi-graph-up-arrow text-info fs-1 mb-2"></i>
-      <h6 class="text-muted fw-bold">MEDIA GOL / MATCH</h6>
-      <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.media_gol }}</p>
-    </div>
+
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Marcatori e Stats</h1>
+    <p class="small text-white-50 mb-0">I numeri principali e la classifica reti del campionato</p>
   </div>
 </div>
 
 <div class="row g-4">
+  <!-- Tabella Marcatori -->
   <div class="col-lg-8">
-    <div class="glass-card">
-      <div class="p-3 border-bottom bg-white bg-opacity-50">
-        <h5 class="fw-bold mb-0">Top Scorer</h5>
-      </div>
+    <div class="glass-card overflow-hidden border-0">
       <div class="table-responsive">
-        <table class="table table-custom table-hover align-middle text-center mb-0">
+        <table class="table table-custom table-borderless table-hover align-middle mb-0" style="border: none;">
           <thead>
-            <tr>
-              <th>Pos</th>
-              <th class="text-start">Giocatore</th>
-              <th>Squadra</th>
-              <th>Reti</th>
+            <tr style="border: none;">
+              <th class="text-center py-3" style="width: 70px; border: none;">Pos</th>
+              <th class="text-start py-3" style="border: none;">Giocatore</th>
+              <th class="text-center py-3" style="border: none;">Squadra</th>
+              <th class="text-center py-3" style="width: 80px; border: none;">Reti</th>
             </tr>
           </thead>
           <tbody>
             {% for m in marcatori %}
             <tr>
-              <td class="fw-bold">
+              <td class="fw-bold text-center py-3">
                 {% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}
               </td>
-              <td class="text-start fw-bold text-dark">{{ m.nome }} {{ m.cognome }}</td>
-              <td><span class="badge bg-light text-dark border">{{ m.squadra }}</span></td>
-              <td class="fw-extrabold fs-5 text-primary">{{ m.reti }}</td>
+              <td class="text-start fw-bold text-dark py-3">{{ m.nome }} {{ m.cognome }}</td>
+              <td class="text-center py-3"><span class="badge bg-light text-dark border">{{ m.squadra }}</span></td>
+              <td class="fw-extrabold fs-5 text-primary text-center py-3">{{ m.reti }}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -67,14 +56,41 @@
     </div>
   </div>
 
+  <!-- Card Destra -->
   <div class="col-lg-4">
-    <div class="glass-card p-4 text-center bg-warning bg-opacity-25 border-warning">
+    <!-- Partita con più gol -->
+    <div class="glass-card p-4 text-center bg-warning bg-opacity-25 border-warning mb-4">
       <i class="bi bi-trophy-fill text-warning fs-1 mb-2"></i>
       <h5 class="fw-bold text-dark mb-3">Partita con più gol</h5>
       <div class="p-3 rounded-4 bg-white shadow-sm">
         <p class="fs-5 fw-bold text-dark mb-0">
           {{ partita_top.casa }} <span class="text-primary">{{ partita_top.gol_casa }} - {{ partita_top.gol_ospite }}</span> {{ partita_top.ospite }}
         </p>
+      </div>
+    </div>
+
+    <!-- Tre Stat Card ordinate in colonna -->
+    <div class="row g-3 mb-4">
+      <div class="col-12">
+        <div class="glass-card p-4 text-center">
+          <i class="bi bi-dribbble text-primary fs-1 mb-2"></i>
+          <h6 class="text-muted fw-bold">PARTITE GIOCATE</h6>
+          <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.giocate }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="glass-card p-4 text-center">
+          <i class="bi bi-lightning-charge-fill text-warning fs-1 mb-2"></i>
+          <h6 class="text-muted fw-bold">GOL TOTALI</h6>
+          <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.gol_totali }}</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="glass-card p-4 text-center">
+          <i class="bi bi-graph-up-arrow text-info fs-1 mb-2"></i>
+          <h6 class="text-muted fw-bold">MEDIA GOL / MATCH</h6>
+          <p class="display-5 fw-extrabold mb-0 text-dark">{{ numeri.media_gol }}</p>
+        </div>
       </div>
     </div>
   </div>

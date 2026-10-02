@@ -8,7 +8,8 @@ def connetti():
         host="localhost",
         user="root",
         password="vicioGay12",
-        database="calcetto"
+        database="calcetto",
+    )
 
 
 #definisce la funzione per calcolare e recuperare la classifica generale del torneo
