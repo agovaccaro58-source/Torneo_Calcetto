@@ -2,7 +2,7 @@
 {% block titolo %}{{ squadra.nome }}{% endblock %}
 
 {% block contenuto %}
-<!-- Banner d'intestazione Club Trasparente e Luminoso -->
+<!-- Banner d'intestazione Club con Sfondo Più Trasparente -->
 <div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="min-height: 220px;">
 
   <!-- Sfondo Dinamico Sfocato dal Logo della Squadra -->
@@ -72,110 +72,164 @@
   </div>
 </div>
 
-<!-- Sezione Tabelle Rosa e Partite (Tabella integrata nella card a tutta ampiezza) -->
+<!-- Sezione Tabelle Rosa e Partite (Allineamento Pareggiato e Scatole alla Stessa Altezza) -->
 <div class="row g-4 align-items-stretch">
 
   <!-- Tabella Rosa Giocatori -->
   <div class="col-lg-6 d-flex flex-column">
-    <div class="glass-card h-100 d-flex flex-column p-0 overflow-hidden">
-      <!-- Intestazione Card a contatto coi bordi -->
-      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-people-fill text-primary fs-5"></i>
-          <h5 class="fw-bold mb-0 text-dark">Rosa Giocatori</h5>
+    <div class="fa-card-frost p-4 flex-grow-1 d-flex flex-column">
+
+      <!-- Card Header -->
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="fa-card-title-group">
+          <div class="fa-icon-pill">
+            <i class="bi bi-people-fill" style="color: #00BAE8;"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Rosa Ufficiale</h5>
+            <span class="text-muted small">Atleti tesserati</span>
+          </div>
         </div>
-        <span class="badge bg-light text-secondary border rounded-pill">{{ rosa|length }} Atleti</span>
+        <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small">
+          {{ rosa|length }} Giocatori
+        </span>
       </div>
 
-      <!-- Tabella che fa corpo unico con la card senza bordi interni arrotondati -->
-      <div class="table-responsive flex-grow-1 d-flex flex-column m-0">
-        <table class="table table-custom table-hover align-middle mb-0 h-100" style="border: none;">
+      <!-- Scatola Tabella con flex-grow-1 per estendersi al 100% -->
+      <div class="table-responsive flex-grow-1 rounded-3 border border-secondary-subtle overflow-hidden bg-white shadow-sm d-flex flex-column" style="border-radius: 12px !important;">
+        <table class="table align-middle mb-0 w-100" style="background: #ffffff; border-collapse: collapse;">
           <thead>
-            <tr>
-              <th class="text-center" style="width: 60px;">N°</th>
-              <th>Nome</th>
-              <th>Cognome</th>
-              <th class="text-center">Ruolo</th>
+            <tr style="background: #182236; color: #f8fafc;">
+              <th class="text-center py-3 text-white" style="width: 55px; background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">N°</th>
+              <th class="ps-3 py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Nome</th>
+              <th class="py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Cognome</th>
+              <th class="text-center pe-3 py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Ruolo</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="background: #ffffff;">
             {% for g in rosa %}
-            <tr>
-              <td class="text-center fw-bold">
-                <span class="badge bg-dark text-white rounded-circle shadow-sm" style="width: 26px; height: 26px; line-height: 18px; display: inline-flex; align-items: center; justify-content: center;">
+            <tr style="background: #ffffff; border-bottom: 1px solid #eef2f6;">
+              <td class="text-center py-2" style="background: #ffffff;">
+                <span class="badge rounded-circle fw-bold text-white shadow-sm"
+                      style="width: 28px; height: 28px; line-height: 19px; background: #182236; font-size: 0.78rem; display: inline-flex; align-items: center; justify-content: center;">
                   {{ g.numero_maglia }}
                 </span>
               </td>
-              <td class="fw-semibold text-dark">{{ g.nome }}</td>
-              <td class="fw-semibold text-dark">{{ g.cognome }}</td>
-              <td class="text-center">
+              <td class="ps-3 fw-bold text-dark py-2" style="background: #ffffff;">{{ g.nome }}</td>
+              <td class="fw-bold text-dark py-2" style="background: #ffffff;">{{ g.cognome }}</td>
+              <td class="text-center pe-3 py-2" style="background: #ffffff;">
                 {% if g.ruolo == 'Portiere' %}
-                  <span class="badge bg-warning text-dark px-2 py-1 rounded-pill"><i class="bi bi-hand-index-thumb-fill me-1"></i>Portiere</span>
+                  <span class="badge rounded-pill px-2 py-1 fw-bold" style="background: #fef3c7; color: #b45309; font-size: 0.72rem;">
+                    <i class="bi bi-hand-index-thumb-fill me-1"></i>Portiere
+                  </span>
                 {% elif g.ruolo == 'Difensore' %}
-                  <span class="badge bg-primary px-2 py-1 rounded-pill"><i class="bi bi-shield-lock-fill me-1"></i>Difensore</span>
+                  <span class="badge rounded-pill px-2 py-1 fw-bold" style="background: #e0f2fe; color: #0369a1; font-size: 0.72rem;">
+                    <i class="bi bi-shield-lock-fill me-1"></i>Difensore
+                  </span>
                 {% elif g.ruolo == 'Laterale' %}
-                  <span class="badge bg-info text-dark px-2 py-1 rounded-pill"><i class="bi bi-arrow-left-right me-1"></i>Laterale</span>
+                  <span class="badge rounded-pill px-2 py-1 fw-bold" style="background: #cffafe; color: #0e7490; font-size: 0.72rem;">
+                    <i class="bi bi-arrow-left-right me-1"></i>Laterale
+                  </span>
                 {% elif g.ruolo == 'Pivot' %}
-                  <span class="badge bg-danger px-2 py-1 rounded-pill"><i class="bi bi-lightning-charge-fill me-1"></i>Pivot</span>
+                  <span class="badge rounded-pill px-2 py-1 fw-bold" style="background: #fee2e2; color: #b91c1c; font-size: 0.72rem;">
+                    <i class="bi bi-lightning-charge-fill me-1"></i>Pivot
+                  </span>
                 {% else %}
-                  <span class="badge bg-secondary px-2 py-1 rounded-pill">{{ g.ruolo }}</span>
+                  <span class="badge bg-light text-secondary border rounded-pill px-2 py-1" style="font-size: 0.72rem;">
+                    {{ g.ruolo }}
+                  </span>
                 {% endif %}
               </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4" class="text-center py-4 text-muted small" style="background: #ffffff;">Nessun giocatore registrato in rosa.</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+        <!-- Blocco bianco riempitivo per pareggiare il fondo -->
+        <div class="flex-grow-1 bg-white" style="min-height: 10px;"></div>
       </div>
+
     </div>
   </div>
 
   <!-- Tabella Partite della Squadra -->
   <div class="col-lg-6 d-flex flex-column">
-    <div class="glass-card h-100 d-flex flex-column p-0 overflow-hidden">
-      <!-- Intestazione Card a contatto coi bordi -->
-      <div class="p-3 border-bottom bg-white bg-opacity-50 d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-calendar3 text-info fs-5"></i>
-          <h5 class="fw-bold mb-0 text-dark">Partite della Squadra</h5>
+    <div class="fa-card-frost p-4 flex-grow-1 d-flex flex-column">
+
+      <!-- Card Header -->
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="fa-card-title-group">
+          <div class="fa-icon-pill">
+            <i class="bi bi-calendar3" style="color: #E5A84B;"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Incontri del Club</h5>
+            <span class="text-muted small">Calendario e risultati</span>
+          </div>
         </div>
-        <span class="badge bg-light text-secondary border rounded-pill">{{ partite|length }} Gare</span>
+        <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small">
+          {{ partite|length }} Gare
+        </span>
       </div>
 
-      <!-- Tabella che fa corpo unico con la card senza bordi interni arrotondati -->
-      <div class="table-responsive flex-grow-1 d-flex flex-column m-0">
-        <table class="table table-custom table-hover align-middle mb-0 h-100" style="border: none;">
+      <!-- Scatola Tabella con flex-grow-1: arriva allo stesso esatto livello di sinistra -->
+      <div class="table-responsive flex-grow-1 rounded-3 border border-secondary-subtle overflow-hidden bg-white shadow-sm d-flex flex-column" style="border-radius: 12px !important;">
+        <table class="table align-middle mb-0 w-100" style="background: #ffffff; border-collapse: collapse;">
           <thead>
-            <tr>
-              <th class="text-center" style="width: 45px;">G.</th>
-              <th>Data</th>
-              <th class="text-end">Casa</th>
-              <th class="text-center" style="width: 95px;">Risultato</th>
-              <th>Ospite</th>
+            <tr style="background: #182236; color: #f8fafc;">
+              <th class="text-center py-3 text-white" style="width: 45px; background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">G.</th>
+              <th class="ps-2 py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Data</th>
+              <th class="text-end py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Casa</th>
+              <th class="text-center py-3 text-white" style="width: 85px; background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Esito</th>
+              <th class="text-start pe-3 py-3 text-white" style="background: #182236; border: none; font-size: 0.78rem; text-transform: uppercase;">Ospite</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="background: #ffffff;">
             {% for p in partite %}
-            <tr>
-              <td class="text-center fw-bold text-muted">{{ p.giornata }}</td>
-              <td class="small text-muted">{{ p.data_ora.strftime('%d/%m %H:%M') if p.data_ora and p.data_ora.strftime is defined else p.data_ora }}</td>
-              <td class="text-end {% if p.casa == squadra.nome %}fw-bold text-primary{% else %}text-dark{% endif %}">
+            <tr style="background: #ffffff; border-bottom: 1px solid #eef2f6;">
+              <td class="text-center fw-bold text-muted small py-2" style="background: #ffffff;">{{ p.giornata }}</td>
+              <td class="small text-secondary ps-2 py-2" style="background: #ffffff;">
+                {{ p.data_ora.strftime('%d/%m %H:%M') if p.data_ora and p.data_ora.strftime is defined else p.data_ora }}
+              </td>
+
+              <!-- Squadra Casa -->
+              <td class="text-end py-2 small {% if p.casa == squadra.nome %}fw-extrabold text-primary{% else %}text-secondary fw-semibold{% endif %}" style="background: #ffffff;">
                 {{ p.casa }}
               </td>
-              <td class="text-center">
+
+              <!-- Risultato -->
+              <td class="text-center py-2" style="background: #ffffff;">
                 {% if p.gol_casa is not none %}
-                  <span class="badge bg-dark px-2 py-1 rounded-pill">{{ p.gol_casa }} – {{ p.gol_ospite }}</span>
+                  <span class="badge rounded-pill px-2 py-1 fw-bold text-white shadow-sm"
+                        style="background: #182236; font-size: 0.75rem; letter-spacing: 0.5px;">
+                    {{ p.gol_casa }} – {{ p.gol_ospite }}
+                  </span>
                 {% else %}
-                  <span class="badge bg-light text-muted border">da giocare</span>
+                  <span class="badge bg-light text-muted border rounded-pill px-2 py-1" style="font-size: 0.70rem;">
+                    In attesa
+                  </span>
                 {% endif %}
               </td>
-              <td class="{% if p.ospite == squadra.nome %}fw-bold text-primary{% else %}text-dark{% endif %}">
+
+              <!-- Squadra Ospite -->
+              <td class="text-start pe-3 py-2 small {% if p.ospite == squadra.nome %}fw-extrabold text-primary{% else %}text-secondary fw-semibold{% endif %}" style="background: #ffffff;">
                 {{ p.ospite }}
               </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="5" class="text-center py-4 text-muted small" style="background: #ffffff;">Nessuna partita programmata.</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+        <!-- Blocco bianco riempitivo che colma lo spazio mancante e pareggia la linea inferiore -->
+        <div class="flex-grow-1 bg-white" style="min-height: 10px;"></div>
       </div>
+
     </div>
   </div>
 
