@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block titolo %}Classifica{% endblock %}
+
+{% block contenuto %}
+<!-- Hero Banner -->
+<div class="position-relative overflow-hidden rounded-4 mb-4 shadow" style="height: 160px;">
+  <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80"
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
+       alt="Campo da calcetto"
+       style="filter: brightness(0.4) saturate(1.2);">
+  <div class="position-relative p-4 p-md-5 d-flex flex-column justify-content-center h-100 text-white"
+       style="background: linear-gradient(90deg, rgba(24, 34, 54, 0.95) 0%, rgba(24, 34, 54, 0.55) 60%, transparent 100%);">
+    <div class="mb-1">
+      <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
+            style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
+        STAGIONE UFFICIALE 2026
+      </span>
+    </div>
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Classifica Generale</h1>
+    <p class="small text-white-50 mb-0">Classifica in tempo reale e prossimi incontri sul campo</p>
+  </div>
+</div>
+
+<div class="row g-4 align-items-stretch">
+  <!-- Classifica Generale (Senza bordo esterno) -->
+  <div class="col-lg-8 d-flex flex-column">
+    <div class="table-responsive h-100 rounded-3 overflow-hidden">
+      <table class="fa-table-modern align-middle text-center mb-0 w-100 h-100">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 45px;">#</th>
+            <th scope="col" class="text-start ps-3">Squadra</th>
+            <th scope="col" title="Giocate">G</th>
+            <th scope="col" title="Vinte">V</th>
+            <th scope="col" title="Nulle">N</th>
+            <th scope="col" title="Perse">P</th>
+            <th scope="col" title="Gol Fatti">GF</th>
+            <th scope="col" title="Gol Subiti">GS</th>
+            <th scope="col" title="Differenza Reti">DR</th>
+            <th scope="col" class="pe-3" style="width: 60px; color: #00E5FF;">Pt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in classifica %}
+          <tr class="{% if loop.index == 1 %}leader-highlight{% endif %}">
+            <td class="fw-bold">
+              {% if loop.index == 1 %}
+                <span class="rank-badge gold">1</span>
+              {% elif loop.index == 2 %}
+                <span class="rank-badge" style="background: #94a3b8; color: #fff;">2</span>
+              {% elif loop.index == 3 %}
+                <span class="rank-badge" style="background: #b45309; color: #fff;">3</span>
+              {% else %}
+                <span class="rank-badge">{{ loop.index }}</span>
+              {% endif %}
+            </td>
+            <td class="text-start ps-3">
+              <a href="/squadra/{{ s.id_squadra }}" class="fw-bold text-dark text-decoration-none">
+                {{ s.nome }}
+              </a>
+            </td>
+            <td class="text-secondary">{{ s.giocate }}</td>
+            <td class="fw-bold text-dark">{{ s.vinte }}</td>
+            <td class="text-secondary">{{ s.pareggiate }}</td>
+            <td class="text-secondary">{{ s.perse }}</td>
+            <td class="text-secondary small">{{ s.gol_fatti }}</td>
+            <td class="text-secondary small">{{ s.gol_subiti }}</td>
+            <td>
+              {% if s.differenza > 0 %}
+                <span class="badge bg-success-subtle text-success fw-bold px-2 py-1">+{{ s.differenza }}</span>
+              {% elif s.differenza < 0 %}
+                <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1">{{ s.differenza }}</span>
+              {% else %}
+                <span class="badge bg-secondary-subtle text-secondary fw-semibold px-2 py-1">0</span>
+              {% endif %}
+            </td>
+            <td class="fw-extrabold fs-5 pe-3" style="color: #0284c7;">{{ s.punti }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Prossimi Match -->
+  <div class="col-lg-4 d-flex flex-column">
+    <div class="fa-card-frost p-4 flex-grow-1 d-flex flex-column h-100">
+
+      <!-- Intestazione Card -->
+      <div class="fa-card-title-group mb-3">
+        <div class="fa-icon-pill">
+          <i class="bi bi-clock-history" style="color: #00E5FF;"></i>
+        </div>
+        <div>
+          <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Prossimi Match</h5>
+          <span class="text-muted small">Programmazione gare</span>
+        </div>
+      </div>
+
+      <!-- Elenco Partite -->
+      <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-start">
+        {% for p in prossime %}
+        <div class="match-card-box">
+          <div class="d-flex justify-content-between align-items-center text-muted small pb-2 border-bottom border-light">
+            <span class="d-inline-flex align-items-center gap-1">
+              <i class="bi bi-calendar2-event text-primary"></i>
+              <span class="fw-medium text-secondary">{{ p.data_ora.strftime('%d/%m/%Y %H:%M') }}</span>
+            </span>
+            <span class="badge px-2 py-1 text-white rounded-pill" style="background: #182236; font-size: 0.72rem;">
+              {{ p.campo }}
+            </span>
+          </div>
+
+          <div class="match-grid-layout">
+            <div class="text-end fw-bold text-dark" style="font-size: 0.92rem; line-height: 1.25;">
+              {{ p.casa }}
+            </div>
+
+            <div class="text-center">
+              <span class="match-tag-vs">VS</span>
+            </div>
+
+            <div class="text-start fw-bold text-dark" style="font-size: 0.92rem; line-height: 1.25;">
+              {{ p.ospite }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
