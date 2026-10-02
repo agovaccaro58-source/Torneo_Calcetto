@@ -13,10 +13,10 @@
     <div class="mb-1">
       <span class="badge rounded-pill px-3 py-1 fw-bold text-dark shadow-sm"
             style="background: linear-gradient(135deg, #00E5FF, #38BDF8); font-size: 0.72rem; letter-spacing: 0.5px;">
-        STAGIONE 2026/27
+        STAGIONE UFFICIALE 2026
       </span>
     </div>
-    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">GRAN TORNEO "SARANNO CAMPIONI" DI CALCIO A 5</h1>
+    <h1 class="h2 fw-extrabold mb-0 text-white" style="letter-spacing: -0.5px;">Campionato di Calcetto</h1>
     <p class="small text-white-50 mb-0">Classifica in tempo reale e prossimi incontri sul campo</p>
   </div>
 </div>
@@ -34,6 +34,7 @@
           </div>
           <div>
             <h5 class="fw-bold mb-0 text-dark" style="letter-spacing: -0.3px;">Classifica Generale</h5>
+            <span class="text-muted small">Aggiornamento automatico</span>
           </div>
         </div>
         <span class="badge bg-light text-dark border px-3 py-1 rounded-pill small">
@@ -60,7 +61,7 @@
           </thead>
           <tbody>
             {% for s in classifica %}
-            <tr>
+            <tr class="{% if loop.index == 1 %}leader-highlight{% endif %}">
               <td class="fw-bold">
                 {% if loop.index == 1 %}
                   <span class="rank-badge gold">1</span>
