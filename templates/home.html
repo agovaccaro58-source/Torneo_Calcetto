@@ -226,7 +226,7 @@
         </ul>
 
         <!-- PULSANTE WHATSAPP PER INFO TORNEO INVERNALE -->
-        <a href="https://wa.me/393330000001?text=Ciao%20Futsal%20Arena!%20Vorrei%20informazioni%20e%20dettagli%20sull'iscrizione%20per%20il%20torneo%20invernale%20Winter%20Arena%20League."
+        <a href="https://wa.me/3897874141?text=Ciao%20Futsal%20Arena!%20Vorrei%20informazioni%20e%20dettagli%20sull'iscrizione%20per%20il%20torneo%20invernale%20Winter%20Arena%20League."
            target="_blank"
            class="btn btn-success rounded-pill fw-bold w-100 py-2 mt-auto shadow-sm">
           <i class="bi bi-whatsapp me-2"></i> Richiedi Info su WhatsApp
@@ -279,6 +279,11 @@
             <div class="mb-3">
               <label class="form-label small fw-bold text-muted">Nome e Cognome</label>
               <input type="text" id="prenotaNome" class="form-control rounded-3" placeholder="Es. Marco Rossi" required>
+            </div>
+            <!-- CAMPO DATA AGGIUNTO -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Data</label>
+              <input type="date" id="prenotaData" class="form-control rounded-3" required>
             </div>
             <div class="row g-2 mb-3">
               <div class="col-md-6">
@@ -336,12 +341,9 @@
           Supervisiona la stesura del calendario, le comunicazioni e l'omologazione dei risultati di gara.
         </p>
         <div class="d-flex gap-2 mt-auto">
-          <a href="https://wa.me/393330000001?text=Ciao,%20vorrei%20informazioni%20sui%20tornei%20Futsal%20Arena"
+          <a href="https://wa.me/3897874141?text=Ciao,%20vorrei%20informazioni%20sui%20tornei%20Futsal%20Arena"
              target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
             <i class="bi bi-whatsapp me-1"></i> WhatsApp
-          </a>
-          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
-            <i class="bi bi-instagram me-1"></i> Instagram
           </a>
         </div>
       </div>
@@ -354,18 +356,15 @@
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
                class="rounded-circle w-100 h-100 object-fit-cover" alt="Gestione Centro Sportivo">
         </div>
-        <h5 class="fw-bold text-dark mb-1">Gestione Impianto</h5>
+        <h5 class="fw-bold text-dark mb-1">Agostino Vaccaro</h5>
         <span class="badge bg-warning-subtle text-dark fw-bold mb-2">Prenotazioni &amp; Campi</span>
         <p class="text-muted small mb-3">
           Referente operativo per l'affitto dei campi 1 e 2, la gestione spogliatoi e le richieste speciali di società esterne.
         </p>
         <div class="d-flex gap-2 mt-auto">
-          <a href="https://wa.me/393330000002?text=Ciao,%20vorrei%20prenotare%20un%20campo%20da%20calcetto"
+          <a href="https://wa.me/3293970598?text=Ciao,%20vorrei%20prenotare%20un%20campo%20da%20calcetto"
              target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
             <i class="bi bi-whatsapp me-1"></i> WhatsApp
-          </a>
-          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
-            <i class="bi bi-instagram me-1"></i> Instagram
           </a>
         </div>
       </div>
@@ -378,18 +377,15 @@
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
                class="rounded-circle w-100 h-100 object-fit-cover" alt="Media & Statistiche">
         </div>
-        <h5 class="fw-bold text-dark mb-1">Media &amp; Database</h5>
+        <h5 class="fw-bold text-dark mb-1">Giuseppe Vento</h5>
         <span class="badge bg-info-subtle text-info-emphasis fw-bold mb-2">Live Score &amp; Digital</span>
         <p class="text-muted small mb-3">
           Cura l'aggiornamento costante dei tabellini marcatori, la classifica dinamica e la copertura social dell'evento.
         </p>
         <div class="d-flex gap-2 mt-auto">
-          <a href="https://wa.me/393330000003?text=Ciao,%20ho%20una%20domanda%20sulle%20statistiche%20della%20mia%20squadra"
+          <a href="https://wa.me/3247755886?text=Ciao,%20ho%20una%20domanda%20sulle%20statistiche%20della%20mia%20squadra"
              target="_blank" class="btn btn-sm btn-success rounded-pill px-3 fw-bold">
             <i class="bi bi-whatsapp me-1"></i> WhatsApp
-          </a>
-          <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold">
-            <i class="bi bi-instagram me-1"></i> Instagram
           </a>
         </div>
       </div>
@@ -402,11 +398,13 @@
 function inviaPrenotazioneWhatsApp(e) {
   e.preventDefault();
   const nome = document.getElementById('prenotaNome').value;
+  const dataRaw = document.getElementById('prenotaData').value;
   const campo = document.getElementById('prenotaCampo').value;
   const orario = document.getElementById('prenotaOrario').value;
 
-  const messaggio = `Ciao Futsal Arena! Sono ${nome}. Vorrei richiedere la disponibilità per il ${campo} nella fascia oraria ${orario}. Attendo conferma, grazie!`;
-  const url = `https://wa.me/393330000002?text=${encodeURIComponent(messaggio)}`;
+  const dataFormattata = dataRaw ? dataRaw.split('-').reverse().join('/') : dataRaw;
+  const messaggio = `Ciao Futsal Arena! Sono ${nome}. Vorrei richiedere la disponibilità per il ${campo} per il giorno ${dataFormattata} nella fascia oraria ${orario}. Attendo conferma, grazie!`;
+  const url = `https://wa.me/3293970598?text=${encodeURIComponent(messaggio)}`;
 
   window.open(url, '_blank');
 }
