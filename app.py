@@ -2,7 +2,6 @@ from flask import Flask, render_template
 import database
 
 app = Flask(__name__)
-
 # =============================================
 # STUDENTE A - pagine 1 e 2
 # =============================================
