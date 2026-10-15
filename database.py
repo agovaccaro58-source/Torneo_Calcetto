@@ -7,7 +7,7 @@ def connetti():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="Vivaletette05/",
+        password="vicioGay12",
         database="calcetto",
     )
 

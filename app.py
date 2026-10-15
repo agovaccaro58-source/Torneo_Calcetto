@@ -13,7 +13,7 @@ def squadre():
 
 
 # =============================================
-# STUDENTE B - pagine 3 e 4
+# STUDENTE B - pagine 3 e 4 (HOME pagina aggiunta)
 # =============================================
 
 @app.route("/")
@@ -74,4 +74,4 @@ def marcatori():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port = 5001)
